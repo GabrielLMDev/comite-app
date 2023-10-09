@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Comite - Workspace</title>
+    <link rel="shortcut icon" href="vendor/assets/LogoNAPA.ico" type="image/x-icon">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <link href="css/styles_comite_app.css?v=1.2.3" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+    <!-- VENTANA -->
+    <div id="wrapper">
+
+        <!-- BARRA MENU -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- LOGO - MENU -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-faucet"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">COMITE DE AYOTLA</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - REGISTRAR -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Inicio</span></a>
+            </li>
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Pagos
+            </div>
+
+            <!-- Nav Item - REGISTRAR -->
+            <li class="nav-item active">
+                <a class="nav-link" href="nuevo_pago.html">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Registrar Pago</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - BUSCAR -->
+            <li class="nav-item" style="margin-top: -15px;">
+                <a class="nav-link" href="buscar_pago.html">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Buscar Pago</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - BUSCAR -->
+            <li class="nav-item" style="margin-top: -15px;">
+                <a class="nav-link" href="imprimir_historial.html">
+                    <i class="fas fa-fw fa-print"></i>
+                    <span>Imprimir Historial</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - PRORROGA -->
+            <li class="nav-item" style="margin-top: -15px;">
+                <a class="nav-link" href="crear_prorroga.html">
+                    <i class="fas fa-fw fa-file-invoice-dollar"></i>
+                    <span>Crear Prorroga</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Convenios
+            </div>
+
+            <!-- Nav Item - NUEVO CONVENIO -->
+            <li class="nav-item">
+                <a class="nav-link" href="buttons.html" id="new_convenio">
+                    <i class="fas fa-fw fa-handshake"></i>
+                    <span>Crear Convenio</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" id="bar_hidde">
+
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="permisos">
+                    <i class="fas fa-fw fa-handshake"></i>
+                    <span id="text_permissions"></span></a>
+            </li>
+
+            <!-- Nav Item - MOSTRAR CONVENIOS -->
+            <li class="nav-item" style="margin-top: -15px;">
+                <a class="nav-link" href="index.html" id="show_convenio">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Mostrar Convenios</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <div id="hidde_div">
+                <div class="sidebar-heading">
+                    Movimientos
+                </div>
+
+                <!-- Nav Item - NUEVO CONVENIO -->
+                <li class="nav-item">
+                    <a class="nav-link" href="movimientos.php" id="new_convenio">
+                        <i class="fas fa-fw fa-exchange-alt"></i>
+                        <span>Ver Movimientos</span></a>
+                </li>
+            </div>
+        </ul>
+        <!-- FIN BARRA MENU -->
+
+        <!-- CONTENIDO -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <div id="content">
+
+                <!-- TOPBAR -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Titulo -->
+                    <h1 class="h3 mb-0 text-black" style="font-size: medium;">COMITE ADMINISTRATIVO DEL SISTEMA DE AGUA
+                        POTABLE DE AYOTLA EDO. DE MEX. A.C</h1>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Actividad
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar Sesión
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- FIN TOPBAR -->
+
+                <!-- CONTENIDO DE VENTANA -->
+                <div class="container-fluid">
+
+                    <div id="buscar_contrato"
+                        style="display: flex; justify-content: center; align-items: center; text-align: center; margin-top: 30vh;">
+                        <form id="search_user_form">
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="width: 45vw;">
+                                <label for="busqueda" class="h5 text-primary text-uppercase"
+                                    style="margin-bottom: 20px;">Buscar cliente o contrato</label>
+                                <input type="text" name="busqueda" id="busqueda" class="form-control"
+                                    style="margin-bottom: 20px; text-align: center;" required>
+                                <input type="submit" class="btn btn-primary btn-lg" style="width: 200px;"
+                                    value="BUSCAR">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="datos_contrato" hidden>
+                        <form id="payment_user_form">
+                            <div class="row">
+                                <!-- CARD CONTRATO -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-0">
+                                                        NUMERO DE CONTRATO</div>
+                                                    <div class="h5 mb-2 font-weight-bold text-gray-800">
+                                                        <span id="n_contrato">
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-0">
+                                                        NUMERO DE CLIENTE</div>
+                                                    <div class="h5 mb-2 font-weight-bold text-gray-800">
+                                                        <span id="n_cliente">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-house-user fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD USUARIO -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        NOMBRE</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <span id="nombre_usuario">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-user fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD PERIODO -->
+                                <div class="col-xl-3 col-md-6 mb-4" style="width: 300px;">
+                                    <div class="card border-left-primary shadow h-100 py-2" style="width: auto;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        PERIODO</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <select name="" id="periodo" class="form-control">
+                                                            <option value="0" class="form-control">Seleccione Periodo
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-calendar-day fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD UBICACION -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        DIRECCIÓN</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <span id="direccion">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-street-view fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD TOTAL -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Monto</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                                            id="total_pago"></span></div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD FOLIO -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        FOLIO</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                                            id="folio"></span></div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-sticky-note fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD OBSERVACIONES -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2" style="width: 340px;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        OBSERVACIONES</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <input type="text" id="observaciones" class="form-control"
+                                                            style="width: 250px;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-eye fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-lg" style="width: 200px;"
+                                value="Realizar Pago" id="btn_pago">
+                        </form>
+                    </div>
+                </div>
+                <!-- FIN CONTENIDO VENTANA -->
+            </div>
+            <!-- FIN CONTENIDO PRINCIPAL -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Comite-App 2023 desarrollado por <a href="https://gabriellmdev.com/"
+                                target="_blank">Ing. Jesús Gabriel Luengas Méndez</a></span>
+                    </div>
+                </div>
+            </footer>
+            <!-- Fin Footer -->
+
+        </div>
+        <!-- FIN CONTENIDO -->
+
+    </div>
+    <!-- FIN VENTANA -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Seguro que quiere terminar la sesión?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Da click en el boton "Cerrar Sesión".</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" type="button" id="btn_logout">Cerrar sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="customAlert" class="custom-alert">
+        <div id="customAlertTitle" class="custom-alert-content"></div>
+        <div id="customAlertContent" class="custom-alert-content"></div>
+        <button id="customAlertButton" class="custom-alert-button">Aceptar</button>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script type="module" src="js/03102023.js?v=1.1"></script>
+    <script type="module" src="js/07102023.js?v=1.2.4"></script>
+
+</body>
+
+</html>
