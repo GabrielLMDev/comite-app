@@ -23,7 +23,7 @@ taskForm.addEventListener('submit', function (e) {
             var mensaje, titulo;
             if (data.estatus === 'Ok') {
                 localStorage.setItem('parameters', JSON.stringify(data));
-                document.cookie = "userId=" + data.usuario;
+                document.cookie = "userId=" + data.usuario + "; expires = Thu, 31 Dec 2026 23: 59: 59 UTC; path = /";
                 document.location.href = "./index.html";
             } else if (data === 'Error 02') {
                 titulo = 'ERROR 02';
