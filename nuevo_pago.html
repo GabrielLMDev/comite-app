@@ -166,15 +166,6 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Actividad
-                                </a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cerrar Sesión
@@ -195,8 +186,12 @@
                                 <label for="busqueda" class="h5 text-primary text-uppercase"
                                     style="margin-bottom: 20px;">Buscar cliente o contrato</label>
                                 <input type="text" name="busqueda" id="busqueda" class="form-control"
-                                    style="margin-bottom: 20px; text-align: center;" required>
-                                <input type="submit" class="btn btn-primary btn-lg" style="width: 200px;"
+                                    style="text-align: center;" onkeyup="buscarClientes()"
+                                    required>
+                                <input type="hidden" id="clienteId" name="clienteId" class="form-control">
+                                <select id="resultado" onchange="seleccionarCliente()"
+                                    style="margin-bottom: 20px; text-align: center; width: 100%;" class="form-control"></select>
+                                <input type="submit" class="btn btn-primary btn-lg" style="width: 200px; margin-top: 10px;"
                                     value="BUSCAR">
                             </div>
                         </form>
@@ -426,6 +421,7 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script type="module" src="js/03102023.js?v=1.1"></script>
     <script type="module" src="js/07102023.js?v=1.2.4"></script>
+    <script src="js/search_cliente.js"></script>
 
 </body>
 

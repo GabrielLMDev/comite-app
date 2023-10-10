@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-    var valor=null;
+    var valor = null;
     const jsonParameters = localStorage.getItem('parameters');
     const Parameter = JSON.parse(jsonParameters);
     valor = Parameter.estatus;
@@ -23,6 +23,7 @@ taskForm.addEventListener('submit', function (e) {
             var mensaje, titulo;
             if (data.estatus === 'Ok') {
                 localStorage.setItem('parameters', JSON.stringify(data));
+                document.cookie = "userId=" + data.usuario;
                 document.location.href = "./index.html";
             } else if (data === 'Error 02') {
                 titulo = 'ERROR 02';

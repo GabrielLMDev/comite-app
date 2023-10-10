@@ -1,0 +1,39 @@
+<?php
+// Conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "America.10";
+$database = "comite-app";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+$nombre = $_GET['nombre'];
+if ($nombre == '') {
+    header('Content-Type: application/json');
+    echo json_encode('');
+} else {
+    // Consulta SQL dinámica
+    $sql = "SELECT * FROM clientes WHERE nombre LIKE '%" . $nombre . "%'";
+    $result = $conn->query($sql);
+
+    $resultados = array();
+
+    if ($result->num_rows > 0) {
+        // Almacena los resultados en un arreglo
+        while ($row = $result->fetch_assoc()) {
+            $resultados[] = array('id' => $row['idCliente'], 'nombre' => $row['nombre']);
+        }
+    }
+
+    // Devuelve los resultados en formato JSON
+    header('Content-Type: application/json');
+    echo json_encode($resultados);
+}
+
+
+
+$conn->close();

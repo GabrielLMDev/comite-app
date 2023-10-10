@@ -64,6 +64,22 @@
 
 window.addEventListener('DOMContentLoaded', () => {
 
+  var empleadoId = getCookie("userId");
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', './php/setCookie.php?userId=' + empleadoId, true);
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+
+      // Parsea la respuesta JSON y crea las opciones del select
+      var data = JSON.parse(xhr.responseText);
+      console.log(data);
+    }
+  };
+
+  xhr.send();
+
   var valor;
   const jsonParameters = localStorage.getItem('parameters');
   if (jsonParameters == null) {
@@ -133,3 +149,17 @@ btn_logout.addEventListener('click', function (e) {
       }
     })
 });
+
+function getCookie(nombreCookie) {
+  var cookies = document.cookie.split(';');
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+    // Verifica si la cookie comienza con el nombre que estamos buscando
+    if (cookie.indexOf(nombreCookie + '=') === 0) {
+      // Extrae el valor de la cookie
+      return cookie.substring(nombreCookie.length + 1, cookie.length);
+    }
+  }
+  // Si la cookie no se encuentra, devuelve null
+  return null;
+}
