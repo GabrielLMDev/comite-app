@@ -10,10 +10,8 @@
   <title>Comite - Workspace</title>
   <link rel="shortcut icon" href="vendor/assets/LogoNAPA.ico" type="image/x-icon" />
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap"
-    rel="stylesheet" />
-  <link href="css/styles_comite_app.css?v=1.2.0" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="css/styles_comite_app.css?v=1.2.8" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -32,7 +30,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider my-0" />
 
-      <!-- Nav Item - Inicio -->
+      <!-- Nav Item - REGISTRAR -->
       <li class="nav-item">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-home"></i>
@@ -53,7 +51,7 @@
       <hr class="sidebar-divider" />
 
       <!-- Nav Item - BUSCAR -->
-      <li class="nav-item active" style="margin-top: -15px">
+      <li class="nav-item" style="margin-top: -15px">
         <a class="nav-link" href="buscar_pago.html">
           <i class="fas fa-fw fa-search"></i>
           <span>Buscar Pago</span></a>
@@ -62,7 +60,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider" />
 
-      <!-- Nav Item - IMPRIMIR -->
+      <!-- Nav Item - BUSCAR -->
       <li class="nav-item" style="margin-top: -15px">
         <a class="nav-link" href="imprimir_historial.html">
           <i class="fas fa-fw fa-print"></i>
@@ -90,7 +88,7 @@
 
         <hr class="sidebar-divider" />
 
-        <li class="nav-item" style="margin-top: -15px">
+        <li class="nav-item active" style="margin-top: -15px">
           <a class="nav-link" href="ingresos.php" id="new_convenio">
             <i class="fas fa-fw fa-dollar"></i>
             <span>Ver Ingresos</span></a>
@@ -122,8 +120,7 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
               </a>
@@ -141,22 +138,82 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <div id="buscar_contrato" style="
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                margin-top: 30vh;
-              ">
-            <form id="search_user_form">
-              <div class="h5 mb-0 font-weight-bold text-gray-800" style="width: 45vw">
-                <label for="busqueda" class="h5 text-primary text-uppercase" style="margin-bottom: 20px">Buscar pago por
-                  folio</label>
-                <input type="text" name="folio" id="folio" class="form-control"
-                  style="margin-bottom: 20px; text-align: center" required />
-                <input type="submit" class="btn btn-primary btn-lg" style="width: 200px" value="BUSCAR" />
+          <div class="card shadow mb-4" style="padding-bottom: 30px">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold" style="color: #ffff">
+                Ingresos
+              </h6>
+            </div>
+            <div class="card-body">
+              <?php
+              $conn = new mysqli("localhost", "root", "America.10", "comite-app");
+              if ($conn->connect_error) {
+                die("Error de conexión a
+                la base de datos: " . $conn->connect_error);
+              }
+              $query = "SELECT
+                SUM(monto) AS total_de_importes FROM pagos";
+              $result =
+                $conn->query($query);
+              if ($result) {
+                $row =
+                  $result->fetch_assoc();
+                $totalImportes =
+                  $row['total_de_importes'];
+                echo "Entradas totales de 2023: $" .
+                  $totalImportes;
+              } else {
+                echo "Error al ejecutar la consulta: "
+                  . $conn->error;
+              }
+              $conn->close(); ?>
+            </div>
+            <div id="datos_consulta">
+              <form id="search_user_form" style="
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                  ">
+                <div style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    ">
+                  <label for="inicio" style="width: 300px">Fecha de Inicio</label>
+                  <input type="date" name="inicio" id="inicio" style="margin: 5px" class="form-control" required />
+                  <label for="inicio" style="width: 50px; margin-left: 10px">a</label>
+                  <input type="date" name="final" id="final" style="margin: 5px" class="form-control" required />
+                </div>
+                <input type="submit" class="btn btn-primary btn-lg" style="width: 200px; margin-top: 10px" value="Buscar Ingresos" />
+              </form>
+            </div>
+            <div id="tabla_hidde" hidden>
+              <div class="card-body" style="text-align: center">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center">
+                    <thead>
+                      <tr>
+                        <th>ID Empleado</th>
+                        <th>Total de Pagos</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+
+                    <tfoot>
+                      <tr>
+                        <th>ID Empleado</th>
+                        <th>Total de Pagos</th>
+                      </tr>
+                    </tfoot>
+                    <tbody></tbody>
+                  </table>
+                  <div class="card-body">
+                    <span id="entradas"></span>
+                  </div>
+                </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
         <!-- /.container-fluid -->
@@ -184,8 +241,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -209,21 +265,13 @@
     </div>
   </div>
 
-  <div id="customAlert" class="custom-alert">
-    <div id="customAlertTitle" class="custom-alert-content"></div>
-    <div id="customAlertContent" class="custom-alert-content"></div>
-    <button id="customAlertButton" class="custom-alert-button">
-      Aceptar
-    </button>
-  </div>
-
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="vendor/datatables/jquery.dataTables.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-  <script type="module" src="js/03102023.js?v=1.3.8"></script>
-  <script type="module" src="js/081023.js?v=1.0.5"></script>
+  <script type="module" src="js/03102023.js?v=1.2.9"></script>
+  <script type="module" src="js/14102023.js?v=1.1.5"></script>
 </body>
 
 </html>

@@ -2,244 +2,207 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Comite - Workspace</title>
-    <link rel="shortcut icon" href="vendor/assets/LogoNAPA.ico" type="image/x-icon">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap"
-        rel="stylesheet">
-    <link href="css/styles_comite_app.css?v=1.2.5" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Comite - Workspace</title>
+  <link rel="shortcut icon" href="vendor/assets/LogoNAPA.ico" type="image/x-icon" />
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap"
+    rel="stylesheet" />
+  <link href="css/styles_comite_app.css?v=1.3.6" rel="stylesheet" />
 </head>
 
 <body id="page-top">
-
-    <!-- VENTANA -->
-    <div id="wrapper">
-
-        <!-- BARRA MENU -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- LOGO - MENU -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-faucet"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">COMITE DE AYOTLA</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - REGISTRAR -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Inicio</span></a>
-            </li>
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Pagos
-            </div>
-
-            <!-- Nav Item - REGISTRAR -->
-            <li class="nav-item">
-                <a class="nav-link" href="nuevo_pago.html">
-                    <i class="fas fa-fw fa-cash-register"></i>
-                    <span>Registrar Pago</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - BUSCAR -->
-            <li class="nav-item" style="margin-top: -15px;">
-                <a class="nav-link" href="buscar_pago.html">
-                    <i class="fas fa-fw fa-search"></i>
-                    <span>Buscar Pago</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - BUSCAR -->
-            <li class="nav-item" style="margin-top: -15px;">
-                <a class="nav-link" href="imprimir_historial.html">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Imprimir Historial</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Nav Item - PRORROGA -->
-            <li class="nav-item" style="margin-top: -15px;">
-                <a class="nav-link" href="crear_prorroga.html">
-                    <i class="fas fa-fw fa-file-invoice-dollar"></i>
-                    <span>Crear Prorroga</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Convenios
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="permisos">
-                    <i class="fas fa-fw fa-handshake"></i>
-                    <span id="text_permissions"></span></a>
-            </li>
-
-            <div id="hidde_div">
-                <!-- Nav Item - NUEVO CONVENIO -->
-                <li class="nav-item">
-                    <a class="nav-link" href="buttons.html" id="new_convenio">
-                        <i class="fas fa-fw fa-handshake"></i>
-                        <span>Crear Convenio</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider" id="bar_hidde">
-
-                <!-- Nav Item - MOSTRAR CONVENIOS -->
-                <li class="nav-item" style="margin-top: -15px;">
-                    <a class="nav-link" href="index.html" id="show_convenio">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Mostrar Convenios</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
-
-
-                <div class="sidebar-heading">
-                    Movimientos
-                </div>
-
-                <!-- Nav Item - NUEVO CONVENIO -->
-                <li class="nav-item">
-                    <a class="nav-link" href="movimientos.php" id="new_convenio">
-                        <i class="fas fa-fw fa-exchange-alt"></i>
-                        <span>Ver Movimientos</span></a>
-                </li>
-            </div>
-        </ul>
-        <!-- FIN BARRA MENU -->
-
-        <!-- CONTENIDO -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- CONTENIDO PRINCIPAL -->
-            <div id="content">
-
-                <!-- TOPBAR -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Titulo -->
-                    <h1 class="h3 mb-0 text-black" style="font-size: medium;">COMITE ADMINISTRATIVO DEL SISTEMA DE AGUA
-                        POTABLE DE AYOTLA EDO. DE MEX. A.C</h1>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Cerrar Sesión
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- FIN TOPBAR -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- FIN CONTENIDO PRINCIPAL -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Comite-App 2023 desarrollado por <a href="https://gabriellmdev.com/"
-                                target="_blank">Ing. Jesús Gabriel Luengas Méndez</a></span>
-                    </div>
-                </div>
-            </footer>
-            <!-- Fin Footer -->
-
+  <!-- VENTANA -->
+  <div id="wrapper">
+    <!-- BARRA MENU -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- LOGO - MENU -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-faucet"></i>
         </div>
-        <!-- FIN CONTENIDO -->
+        <div class="sidebar-brand-text mx-3">COMITE DE AYOTLA</div>
+      </a>
 
-    </div>
-    <!-- FIN VENTANA -->
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0" />
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+      <!-- Nav Item - REGISTRAR -->
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-home"></i>
+          <span>Inicio</span></a>
+      </li>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Seguro que quiere terminar la sesión?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Da click en el boton "Cerrar Sesión".</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary" type="button" id="btn_logout">Cerrar sesión</button>
-                </div>
-            </div>
+      <!-- Heading -->
+      <div class="sidebar-heading">Pagos</div>
+
+      <!-- Nav Item - REGISTRAR -->
+      <li class="nav-item">
+        <a class="nav-link" href="nuevo_pago.html">
+          <i class="fas fa-fw fa-cash-register"></i>
+          <span>Registrar Pago</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+
+      <!-- Nav Item - BUSCAR -->
+      <li class="nav-item" style="margin-top: -15px">
+        <a class="nav-link" href="buscar_pago.html">
+          <i class="fas fa-fw fa-search"></i>
+          <span>Buscar Pago</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+
+      <!-- Nav Item - BUSCAR -->
+      <li class="nav-item" style="margin-top: -15px">
+        <a class="nav-link" href="imprimir_historial.html">
+          <i class="fas fa-fw fa-print"></i>
+          <span>Imprimir Historial</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+      <!-- Nav Item - PRORROGA -->
+      <li class="nav-item" style="margin-top: -15px">
+        <a class="nav-link" href="crear_prorroga.html">
+          <i class="fas fa-fw fa-file-invoice-dollar"></i>
+          <span>Crear Prorroga</span></a>
+      </li>
+
+      <div id="hidde_div">
+        <div class="sidebar-heading">Movimientos</div>
+
+        <li class="nav-item">
+          <a class="nav-link" href="movimientos.php" id="new_convenio">
+            <i class="fas fa-fw fa-exchange-alt"></i>
+            <span>Ver Movimientos</span></a>
+        </li>
+
+        <hr class="sidebar-divider" />
+
+        <li class="nav-item" style="margin-top: -15px">
+          <a class="nav-link" href="ingresos.php" id="new_convenio">
+            <i class="fas fa-fw fa-dollar"></i>
+            <span>Ver Ingresos</span></a>
+        </li>
+      </div>
+    </ul>
+    <!-- FIN BARRA MENU -->
+
+    <!-- CONTENIDO -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- CONTENIDO PRINCIPAL -->
+      <div id="content">
+        <!-- TOPBAR -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Titulo -->
+          <h1 class="h3 mb-0 text-black" style="font-size: medium">
+            COMITE ADMINISTRATIVO DEL SISTEMA DE AGUA POTABLE DE AYOTLA EDO.
+            DE MEX. A.C
+          </h1>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
+                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Cerrar Sesión
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- FIN TOPBAR -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"></div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- FIN CONTENIDO PRINCIPAL -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Comite-App 2023 desarrollado por
+              <a href="https://gabriellmdev.com/" target="_blank">Ing. Jesús Gabriel Luengas Méndez</a></span>
+          </div>
         </div>
+      </footer>
+      <!-- Fin Footer -->
     </div>
+    <!-- FIN CONTENIDO -->
+  </div>
+  <!-- FIN VENTANA -->
 
-    <div id="customAlert" class="custom-alert">
-        <div id="customAlertTitle" class="custom-alert-content"></div>
-        <div id="customAlertContent" class="custom-alert-content"></div>
-        <button id="customAlertButton" class="custom-alert-button">Aceptar</button>
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            ¿Seguro que quiere terminar la sesión?
+          </h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Da click en el boton "Cerrar Sesión".</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">
+            Cancelar
+          </button>
+          <button class="btn btn-primary" type="button" id="btn_logout">
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/i03102023.js?v=1.2.1"></script>
-    <script type="module" src="js/03102023.js?v=1.2.9"></script>
+  <div id="customAlert" class="custom-alert">
+    <div id="customAlertTitle" class="custom-alert-content"></div>
+    <div id="customAlertContent" class="custom-alert-content"></div>
+    <button id="customAlertButton" class="custom-alert-button">
+      Aceptar
+    </button>
+  </div>
 
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/i03102023.js?v=1.2.1"></script>
+  <script type="module" src="js/03102023.js?v=1.4.1"></script>
 </body>
 
 </html>

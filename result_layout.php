@@ -2,7 +2,6 @@
 if (isset($_GET['cliente_contrato'])) {
     // Procesar los datos del formulario aquí
     $dato = $_GET['cliente_contrato'];
-    session_start();
 } else {
     header("HTTP/1.0 404 Not Found");
     header("Location: 404.html");
@@ -95,51 +94,21 @@ if (isset($_GET['cliente_contrato'])) {
                     <span>Crear Prorroga</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Convenios
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="permisos">
-                    <i class="fas fa-fw fa-handshake"></i>
-                    <span id="text_permissions"></span></a>
-            </li>
-
             <div id="hidde_div">
-                <!-- Nav Item - NUEVO CONVENIO -->
-                <li class="nav-item">
-                    <a class="nav-link" href="buttons.html" id="new_convenio">
-                        <i class="fas fa-fw fa-handshake"></i>
-                        <span>Crear Convenio</span></a>
-                </li>
+                <div class="sidebar-heading">Movimientos</div>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider" id="bar_hidde">
-
-                <!-- Nav Item - MOSTRAR CONVENIOS -->
-                <li class="nav-item" style="margin-top: -15px;">
-                    <a class="nav-link" href="index.html" id="show_convenio">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Mostrar Convenios</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
-
-
-                <div class="sidebar-heading">
-                    Movimientos
-                </div>
-
-                <!-- Nav Item - NUEVO CONVENIO -->
                 <li class="nav-item">
                     <a class="nav-link" href="movimientos.php" id="new_convenio">
                         <i class="fas fa-fw fa-exchange-alt"></i>
                         <span>Ver Movimientos</span></a>
+                </li>
+
+                <hr class="sidebar-divider" />
+
+                <li class="nav-item" style="margin-top: -15px">
+                    <a class="nav-link" href="ingresos.php" id="new_convenio">
+                        <i class="fas fa-fw fa-dollar"></i>
+                        <span>Ver Ingresos</span></a>
                 </li>
             </div>
         </ul>
@@ -253,7 +222,7 @@ if (isset($_GET['cliente_contrato'])) {
                                             $concept = "CONSULTÓ EL ESTADO DE CUENTA DE " . $dato;
                                             $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto) VALUES (:user, :concepto)";
                                             $stmt = $conn->prepare($sql);
-                                            $stmt->bindParam(':user', $_SESSION['user_id']);
+                                            $stmt->bindParam(':user',  $_COOKIE['userId']);
                                             $stmt->bindParam(':concepto', $concept);
                                             if ($stmt->execute()) {
                                             } else {

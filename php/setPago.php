@@ -1,9 +1,8 @@
 <?php
-session_start();
 require 'database.php';
 $idContrato = $_POST['contrato'];
 $idCliente = $_POST['cliente'];
-$idEmpleado = $_SESSION['user_id'];
+$idEmpleado = $_COOKIE['userId'];
 $idPeriodo = $_POST['id_periodo'];
 $Obs = $_POST['obs'];
 $Monto = $_POST['montoPago'];
@@ -39,7 +38,7 @@ function setMov($folio, $Monto, $idCliente)
     $concept = "PAGO POR $" . $Monto . " DE CLIENTE " . $idCliente;
     $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto, folio) VALUES (:user, :concepto, :folio)";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':user', $_SESSION['user_id']);
+    $stmt->bindParam(':user', $_COOKIE['userId']);
     $stmt->bindParam(':concepto', $concept);
     $stmt->bindParam(':folio', $folio);
     if ($stmt->execute()) {

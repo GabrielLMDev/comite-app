@@ -1,5 +1,4 @@
 <?php
-session_start();
 require 'database.php';
 $usuario_login = $_POST['user'];
 $pass_login = $_POST['password'];
@@ -32,7 +31,6 @@ function setMov($tipo)
   $stmt->bindParam(':user', $_POST['user']);
   $stmt->bindParam(':concepto', $concept);
   if ($stmt->execute()) {
-    $_SESSION['user_id'] = $_POST['user'];
     $datos['usuario'] = $_POST['user'];
     $datos['tipo'] = $tipo;
     $datos['fecha_sesion'] = date('Y-m-d');
