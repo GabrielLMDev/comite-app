@@ -7,14 +7,15 @@ $datos;
 if ($usuario_login === '' || $pass_login === '') {
   echo json_encode('Error 03');
 } else {
-  $records = $conn->prepare('SELECT idEmpleado, password, tipo FROM empleados WHERE idEmpleado = :user');
+  $records = $conn->prepare('SELECT idEmpleado, password, tipo, rol FROM empleados WHERE idEmpleado = :user');
   $records->bindParam(':user', $usuario_login);
   $records->execute();
   $results = $records->fetch(PDO::FETCH_ASSOC);
   if ($results > 0) {
     if (password_verify($_POST['password'], $results['password'])) {
       $tipo = $results['tipo'];
-      setMov($tipo);
+      $rol = $results['rol'];
+      setMov($tipo, $rol);
     } else {
       echo json_encode('Error 02');
     }
@@ -22,7 +23,7 @@ if ($usuario_login === '' || $pass_login === '') {
     echo json_encode('Error 01');
   }
 }
-function setMov($tipo)
+function setMov($tipo, $rol)
 {
   require 'database.php';
   $concept = 'INICIO DE SESION';
@@ -33,6 +34,7 @@ function setMov($tipo)
   if ($stmt->execute()) {
     $datos['usuario'] = $_POST['user'];
     $datos['tipo'] = $tipo;
+    $datos['rol'] = $rol;
     $datos['fecha_sesion'] = date('Y-m-d');
     $datos['hora_sesion'] = date('H:i:s');
     $datos['estatus'] = 'Ok';

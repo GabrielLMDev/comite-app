@@ -2,6 +2,17 @@ window.addEventListener("DOMContentLoaded", () => {
   if (verificarCookie("userId")) {
     document.location.href = "./index.html";
   }
+  const passwordInput = document.getElementById('password');
+  const mostrarContrasenaCheckbox = document.getElementById('customCheck');
+  mostrarContrasenaCheckbox.addEventListener('change', function () {
+    if (mostrarContrasenaCheckbox.checked) {
+
+      passwordInput.type = 'text';
+    } else {
+
+      passwordInput.type = 'password';
+    }
+  });
 });
 
 // Crear una cookie con tiempo de vida

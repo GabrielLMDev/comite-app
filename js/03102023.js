@@ -94,15 +94,21 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   const jsonParameters = localStorage.getItem("parameters");
   const Parameter = JSON.parse(jsonParameters);
-  var tipo_user = Parameter.tipo;
+  var rol_user = Parameter.rol;
 
   const convenioLink = document.getElementById("new_convenio");
-  const hidde_div = document.getElementById("hidde_div");
-  if (tipo_user != "admin") {
-    hidde_div.style.display = "none";
+  const admin_div = document.getElementById("admin_div");
+  const tesorero_div = document.getElementById("tesorero_div");
+
+  if (rol_user == "A") {
+
+  } else if (rol_user == "B") {
+    admin_div.style.display = "none";
     convenioLink.href = "#";
     convenioLink.style.display = "none";
-  } else {
+  } else if (rol_user == "C") {
+    admin_div.style.display = "none";
+    tesorero_div.style.display = "none";
   }
 
   var user = Parameter.usuario;

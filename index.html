@@ -39,48 +39,53 @@
           <span>Inicio</span></a>
       </li>
 
+      <hr class="sidebar-divider" />
+
       <!-- Heading -->
-      <div class="sidebar-heading">Pagos</div>
+      <div class="sidebar-heading">Secretario</div>
 
-      <!-- Nav Item - REGISTRAR -->
+      <!-- Menu pagos -->
       <li class="nav-item">
-        <a class="nav-link" href="nuevo_pago.html">
-          <i class="fas fa-fw fa-cash-register"></i>
-          <span>Registrar Pago</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
+          <i class="fas fa-search-dollar"></i>
+          <span>Pagos y Consultas</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="nuevo_pago.html">Registrar Pago</a>
+            <a class="collapse-item" href="buscar_pago.html">Buscar Pago</a>
+            <a class="collapse-item" href="imprimir_historial.html">
+              <span>Imprimir Historial</span></a>
+          </div>
+        </div>
       </li>
-
-      <!-- Divider -->
       <hr class="sidebar-divider" />
 
-      <!-- Nav Item - BUSCAR -->
-      <li class="nav-item" style="margin-top: -15px">
-        <a class="nav-link" href="buscar_pago.html">
-          <i class="fas fa-fw fa-search"></i>
-          <span>Buscar Pago</span></a>
-      </li>
+      <div id="tesorero_div">
+        <!-- Heading -->
+        <div class="sidebar-heading">Tesorero</div>
+        <!-- Menu Egresos -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-hand-holding-usd"></i>
+            <span>Egresos</span>
+          </a>
+          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="registrar_egreso.html">Registrar Egreso</a>
+              <a class="collapse-item" href="registrar_nomina.html">Pago Nómina</a>
+              <a class="collapse-item" href="aportaciones.html">Aportaciones</a>
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+      </div>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider" />
-
-      <!-- Nav Item - BUSCAR -->
-      <li class="nav-item" style="margin-top: -15px">
-        <a class="nav-link" href="imprimir_historial.html">
-          <i class="fas fa-fw fa-print"></i>
-          <span>Imprimir Historial</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider" />
-      <!-- Nav Item - PRORROGA -->
-      <li class="nav-item" style="margin-top: -15px">
-        <a class="nav-link" href="crear_prorroga.html">
-          <i class="fas fa-fw fa-file-invoice-dollar"></i>
-          <span>Crear Prorroga</span></a>
-      </li>
-
-      <div id="hidde_div">
-        <div class="sidebar-heading">Movimientos</div>
-
+      <div id="admin_div">
+        <div class="sidebar-heading">Administrador</div>
         <li class="nav-item">
           <a class="nav-link" href="movimientos.php" id="new_convenio">
             <i class="fas fa-fw fa-exchange-alt"></i>
@@ -93,6 +98,14 @@
           <a class="nav-link" href="ingresos.php" id="new_convenio">
             <i class="fas fa-fw fa-dollar"></i>
             <span>Ver Ingresos</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <!-- Nav Item - PRORROGA -->
+        <li class="nav-item" style="margin-top: -15px">
+          <a class="nav-link" href="crear_convenio.html">
+            <i class="fas fa-fw fa-file-invoice-dollar"></i>
+            <span>Crear Convenio</span></a>
         </li>
       </div>
     </ul>
@@ -139,7 +152,67 @@
         <!-- FIN TOPBAR -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid"></div>
+        <div class="container-fluid">
+          <style>
+            /* Estilo para el contenedor del perfil */
+            .profile-container {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+              padding: 20px;
+              background-color: #f5f5f5;
+              border: 1px solid #ddd;
+              border-radius: 10px;
+            }
+
+            /* Estilo para la imagen de perfil */
+            .profile-image {
+              width: 150px;
+              height: 150px;
+              border-radius: 50%;
+              /* Forma redonda para la imagen de perfil */
+              border: 5px solid #fff;
+              /* Borde blanco alrededor de la imagen */
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+              /* Sombra suave */
+            }
+
+            /* Estilo para el nombre de usuario */
+            .profile-username {
+              font-size: 24px;
+              margin-top: 10px;
+              color: #333;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+            }
+
+            /* Estilo para la descripción del perfil */
+            .profile-description {
+              font-size: 16px;
+              margin-top: 10px;
+              color: #777;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+            }
+          </style>
+
+          <div class="profile-container">
+            <img id="perfilImagen" class="profile-image" src="" alt="">
+            <div class="profile-username"><span style="font-size: 20px; color: #333;">Bienvenido</span>
+              <span id="nombre"></span>
+            </div>
+            <div class="profile-description">
+              <span id="id"></span>
+              <span id="zona"></span>
+              <span id="tipo"></span>
+            </div>
+          </div>
+        </div>
         <!-- /.container-fluid -->
       </div>
       <!-- FIN CONTENIDO PRINCIPAL -->
@@ -201,8 +274,8 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/i03102023.js?v=1.2.1"></script>
-  <script type="module" src="js/03102023.js?v=1.4.1"></script>
+  <script src="js/i03102023.js?v=1.2.5"></script>
+  <script type="module" src="js/03102023.js?v=1.4.2"></script>
 </body>
 
 </html>

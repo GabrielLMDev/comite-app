@@ -37,49 +37,52 @@
           <span>Inicio</span></a>
       </li>
 
+      <hr class="sidebar-divider" />
+
       <!-- Heading -->
-      <div class="sidebar-heading">Pagos</div>
+      <div class="sidebar-heading">Secretario</div>
 
-      <!-- Nav Item - REGISTRAR -->
+      <!-- Menu pagos -->
       <li class="nav-item">
-        <a class="nav-link" href="nuevo_pago.html">
-          <i class="fas fa-fw fa-cash-register"></i>
-          <span>Registrar Pago</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-search-dollar"></i>
+          <span>Pagos y Consultas</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="nuevo_pago.html">Registrar Pago</a>
+            <a class="collapse-item" href="buscar_pago.html">Buscar Pago</a>
+            <a class="collapse-item" href="imprimir_historial.html">
+              <span>Imprimir Historial</span></a>
+          </div>
+        </div>
       </li>
-
-      <!-- Divider -->
       <hr class="sidebar-divider" />
 
-      <!-- Nav Item - BUSCAR -->
-      <li class="nav-item" style="margin-top: -15px">
-        <a class="nav-link" href="buscar_pago.html">
-          <i class="fas fa-fw fa-search"></i>
-          <span>Buscar Pago</span></a>
-      </li>
+      <div id="tesorero_div">
+        <!-- Heading -->
+        <div class="sidebar-heading">Tesorero</div>
+        <!-- Menu Egresos -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-hand-holding-usd"></i>
+            <span>Egresos</span>
+          </a>
+          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="registrar_egreso.html">Registrar Egreso</a>
+              <a class="collapse-item" href="registrar_nomina.html">Pago Nómina</a>
+              <a class="collapse-item" href="aportaciones.html">Aportaciones</a>
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+      </div>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider" />
-
-      <!-- Nav Item - BUSCAR -->
-      <li class="nav-item" style="margin-top: -15px">
-        <a class="nav-link" href="imprimir_historial.html">
-          <i class="fas fa-fw fa-print"></i>
-          <span>Imprimir Historial</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider" />
-
-      <!-- Nav Item - PRORROGA -->
-      <li class="nav-item" style="margin-top: -15px">
-        <a class="nav-link" href="crear_prorroga.html">
-          <i class="fas fa-fw fa-file-invoice-dollar"></i>
-          <span>Crear Prorroga</span></a>
-      </li>
-
-      <div id="hidde_div">
-        <div class="sidebar-heading">Movimientos</div>
-
+      <div id="admin_div">
+        <div class="sidebar-heading">Administrador</div>
         <li class="nav-item">
           <a class="nav-link" href="movimientos.php" id="new_convenio">
             <i class="fas fa-fw fa-exchange-alt"></i>
@@ -92,6 +95,14 @@
           <a class="nav-link" href="ingresos.php" id="new_convenio">
             <i class="fas fa-fw fa-dollar"></i>
             <span>Ver Ingresos</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <!-- Nav Item - PRORROGA -->
+        <li class="nav-item" style="margin-top: -15px">
+          <a class="nav-link" href="crear_convenio.html">
+            <i class="fas fa-fw fa-file-invoice-dollar"></i>
+            <span>Crear Convenio</span></a>
         </li>
       </div>
     </ul>

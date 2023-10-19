@@ -5,6 +5,7 @@ const btn_pago = document.getElementById("btn_pago");
 let contrato, cliente, id_periodo, obs, montoPago;
 let newfolio;
 let folio_pago;
+let mensaje, titulo;
 search_user_Form.addEventListener("submit", function (e) {
   e.preventDefault();
   var n_User = new FormData(search_user_Form);
@@ -99,66 +100,7 @@ function hideCustomAlert() {
   var customAlert = document.getElementById("customAlert");
   customAlert.style.display = "none";
 }
-/*
-$(document).ready(function () {
-  var selectPeriodos = $("#periodo");
-  var montoSeleccionado = $("#total_pago");
 
-  // Realizar una solicitud AJAX para obtener los datos desde PHP
-  $.ajax({
-    url: "./php/getPeriodo.php",
-    dataType: "json",
-    success: function (data) {
-      // Llenar el select con los datos recibidos
-      if (data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-          var fechaStr = data[i].fecha;
-          var fechaObj = new Date(fechaStr);
-          var year = fechaObj.getFullYear();
-          var month = fechaObj.getMonth() + 1; // El mes comienza desde 0
-          var day = fechaObj.getDate();
-          var fechaFormateada =
-            year +
-            "-" +
-            (month < 10 ? "0" : "") +
-            month +
-            "-" +
-            (day < 10 ? "0" : "") +
-            day;
-          selectPeriodos.append(
-            $("<option>", {
-              value: data[i].idPeriodo,
-              text: data[i].nombre_periodo + " - " + fechaFormateada,
-            })
-          );
-        }
-
-        // Configurar un controlador de eventos para el cambio de selección
-        selectPeriodos.on("change", function () {
-          var selectedId = $(this).val();
-          //                    obtenerMontoPorId(data, selectedId);
-          if (selectedId == 0) {
-            montoSeleccionado.text("Selecciona periodo");
-            btn_pago.disabled = true;
-          } else {
-            var selectedMonto = data[selectedId - 1].monto;
-            var periodoId = data[selectedId - 1].idPeriodo;
-            id_periodo = periodoId;
-            montoPago = selectedMonto;
-            montoSeleccionado.text(selectedMonto);
-            btn_pago.disabled = false;
-          }
-        });
-      } else {
-        console.log("No se encontraron registros en la tabla periodos.");
-      }
-    },
-    error: function (xhr, status, error) {
-      console.error("Error en la solicitud AJAX: " + status + " - " + error);
-    },
-  });
-});
-*/
 function mostrarAdeudo(nCliente) {
   var radiosContainer = $("#radios-container");
   var montoSeleccionado = $("#total_pago");
@@ -212,7 +154,7 @@ function mostrarAdeudo(nCliente) {
           var selectedValue = $('input[type="radio"]:checked').val();
           montoPago = selectedValue;
           var total = parseFloat(selectedValue) || 0.0; // Si no se selecciona ninguno, se establece en 0
-          montoSeleccionado.text(total.toFixed(2));
+          montoSeleccionado.val(total.toFixed(2));
           // Habilitar o deshabilitar el botón según si hay al menos un radio seleccionado
           if ($('input[type="radio"]:checked').length > 0) {
             btnPago.prop("disabled", false);
@@ -233,12 +175,12 @@ function mostrarAdeudo(nCliente) {
   });
 }
 
-
-
 const payment_user_form = document.getElementById("payment_user_form");
 payment_user_form.addEventListener("submit", function (e) {
   const observaciones = document.getElementById("observaciones");
+  const total_pago = document.getElementById("total_pago");
   obs = observaciones.value;
+  montoPago = total_pago.value;
   e.preventDefault();
   var setPago = new FormData();
   setPago.append("contrato", contrato);
@@ -252,7 +194,6 @@ payment_user_form.addEventListener("submit", function (e) {
   })
     .then((res) => res.json())
     .then((data) => {
-      var mensaje, titulo;
       if (data.folio) {
         titulo = "PAGO CORRECTO";
         mensaje = "El pago se ha realizado de manera exitosa.";
