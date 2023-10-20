@@ -64,13 +64,11 @@
         <div class="sidebar-heading">Tesorero</div>
         <!-- Menu Egresos -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-hand-holding-usd"></i>
             <span>Egresos</span>
           </a>
-          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
+          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="registrar_egreso.html">Registrar Egreso</a>
               <a class="collapse-item" href="registrar_nomina.html">Pago Nómina</a>
@@ -91,13 +89,22 @@
 
         <hr class="sidebar-divider" />
 
-        <li class="nav-item active" style="margin-top: -15px">
-          <a class="nav-link" href="ingresos.php" id="new_convenio">
-            <i class="fas fa-fw fa-dollar"></i>
-            <span>Ver Ingresos</span></a>
+        <li class="nav-item active" style="margin-top: -14px;">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="#collapsePages">
+            <i class="fas fa-hand-holding-usd"></i>
+            <span>Ver Entradas y Salidas</span>
+          </a>
+          <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="ingresos.php" id="new_convenio">Ver Ingresos</a>
+              <a class="collapse-item" href="egresos.html" id="new_convenio">Ver Egresos</a>
+              <a class="collapse-item" href="nominas_pagadas.html">Ver Nominas Pagadas</a>
+            </div>
+          </div>
         </li>
-        <!-- Divider -->
+
         <hr class="sidebar-divider" />
+
         <!-- Nav Item - PRORROGA -->
         <li class="nav-item" style="margin-top: -15px">
           <a class="nav-link" href="crear_convenio.html">

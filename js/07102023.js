@@ -169,7 +169,6 @@ function mostrarAdeudo(nCliente) {
     url: "./php/getPeriodosAdeudados.php?idCliente=" + nCliente,
     dataType: "json",
     success: function (data) {
-      console.log(data.idPeriodo)
       if (data.length > 0) {
         for (var i = 0; i < data.length; i++) {
           var fechaStr = data[i].fecha;

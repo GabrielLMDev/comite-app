@@ -32,23 +32,26 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     // Hacer la solicitud a la API del servidor
     fetch(
-      `./php/getEgresosposMes.php?mes=` + mesSeleccionado
+      `./php/getNominasporMes.php?mes=` + mesSeleccionado
     )
       .then((response) => response.json())
       .then((data) => {
         dataTable.clear().draw();
         if (data.length > 0) {
           // Agregar los nuevos datos a la tabla
-          data.forEach((egresos) => {
+          data.forEach((nomina) => {
             dataTable.row.add([
-              egresos.concepto,
-              egresos.beneficiario,
-              formatearMoneda(egresos.monto),
-              egresos.resumenMensual,
-              egresos.idEmpleado,
-              egresos.fecha,
-              egresos.folio,
-              egresos.n_documento
+              nomina.nAsalariado,
+              nomina.puesto,
+              formatearMoneda(nomina.salarioBase),
+              formatearMoneda(nomina.bonificaciones),
+              formatearMoneda(nomina.deducciones),
+              formatearMoneda(nomina.salarioNeto),
+              nomina.idEmpleado,
+              nomina.resumenMensual,
+              formaPago(nomina.tipo),
+              nomina.referencia,
+              nomina.folio
             ]).draw();
           });
         } else {
@@ -59,17 +62,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log('mes para el fetch ' + mesSeleccionado);
     fetch(
-      `./php/getSumaEgresos.php?mes=` + mesSeleccionado
+      `./php/getSumaNomina.php?mes=` + mesSeleccionado
     )
       .then((response) => response.json())
       .then((data) => {
         if (data.length > 0) {
           let total = formatearMoneda(data);
-          const entradas = document.getElementById('entradas');
-          entradas.innerHTML = 'En el mes de ' + mesSeleccionado + ' se ha gastado ' + total + ' en Egresos Diversos';
+          const nominasTotales = document.getElementById('nominasTotales');
+          nominasTotales.innerHTML = 'En el mes de ' + mesSeleccionado + ' se han pagado ' + total + ' en Nominas';
         } else {
-          const entradas = document.getElementById('entradas');
-          entradas.innerHTML = '';
+          const nominasTotales = document.getElementById('nominasTotales');
+          nominasTotales.innerHTML = '';
           alert("No se encontraron registros para el mes seleccionado.");
         }
       })

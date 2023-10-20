@@ -24,6 +24,7 @@ if (isset($_GET['cliente_contrato'])) {
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap" rel="stylesheet">
     <link href="css/styles_comite_app.css?v=1.2.9" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -103,13 +104,22 @@ if (isset($_GET['cliente_contrato'])) {
 
                 <hr class="sidebar-divider" />
 
-                <li class="nav-item" style="margin-top: -15px">
-                    <a class="nav-link" href="ingresos.php" id="new_convenio">
-                        <i class="fas fa-fw fa-dollar"></i>
-                        <span>Ver Ingresos</span></a>
+                <li class="nav-item" style="margin-top: -14px;">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="#collapsePages">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <span>Ver Entradas y Salidas</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="ingresos.php" id="new_convenio">Ver Ingresos</a>
+                            <a class="collapse-item" href="egresos.html" id="new_convenio">Ver Egresos</a>
+                            <a class="collapse-item" href="nominas_pagadas.html">Ver Nominas Pagadas</a>
+                        </div>
+                    </div>
                 </li>
-                <!-- Divider -->
+
                 <hr class="sidebar-divider" />
+
                 <!-- Nav Item - PRORROGA -->
                 <li class="nav-item" style="margin-top: -15px">
                     <a class="nav-link" href="crear_convenio.html">
@@ -256,6 +266,10 @@ if (isset($_GET['cliente_contrato'])) {
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="card-body" style="display: flex; justify-content: center; align-items: center;">
+                                <img src="vendor/assets/Banner.png" alt="" style="width: 80%;">
+                                <div id="qr-code"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -316,6 +330,7 @@ if (isset($_GET['cliente_contrato'])) {
     <script src="vendor/datatables/jquery.dataTables.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script type="module" src="js/03102023.js?v=1.3.8"></script>
+    <script type="module" src="js/qr.js?v=1.0.0"></script>
 
 </body>
 
