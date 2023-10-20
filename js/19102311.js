@@ -12,7 +12,7 @@ mesSelect.addEventListener("change", function () {
   console.log("Mes seleccionado:", mesSeleccionado);
 });
 function formaPago(valor) {
-  if (valor === '0') {
+  if (valor) {
     return 'EFECTIVO';
   } else {
     return 'DEPOSITO';
@@ -32,26 +32,17 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     // Hacer la solicitud a la API del servidor
     fetch(
-      `./php/getNominasporMes.php?mes=` + mesSeleccionado
+      `./php/getPagosporFecha.php?mes=` + mesSeleccionado
     )
       .then((response) => response.json())
       .then((data) => {
         dataTable.clear().draw();
         if (data.length > 0) {
           // Agregar los nuevos datos a la tabla
-          data.forEach((nomina) => {
+          data.forEach((ingresos) => {
             dataTable.row.add([
-              nomina.nAsalariado,
-              nomina.puesto,
-              formatearMoneda(nomina.salarioBase),
-              formatearMoneda(nomina.bonificaciones),
-              formatearMoneda(nomina.deducciones),
-              formatearMoneda(nomina.salarioNeto),
-              nomina.idEmpleado,
-              nomina.resumenMensual,
-              formaPago(nomina.tipo),
-              nomina.referencia,
-              nomina.folio
+              ingresos.idEmpleado,
+              formatearMoneda(ingresos.total_pago),
             ]).draw();
           });
         } else {
@@ -62,17 +53,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log('mes para el fetch ' + mesSeleccionado);
     fetch(
-      `./php/getSumaNomina.php?mes=` + mesSeleccionado
+      `./php/getSumaIngresos.php?mes=` + mesSeleccionado
     )
       .then((response) => response.json())
       .then((data) => {
         if (data.length > 0) {
           let total = formatearMoneda(data);
-          const nominasTotales = document.getElementById('nominasTotales');
-          nominasTotales.innerHTML = 'En el mes de ' + mesSeleccionado + ' se han pagado ' + total + ' en Nominas';
+          const entradas = document.getElementById('entradas');
+          entradas.innerHTML = 'En el mes de ' + mesSeleccionado + ' se ha recibido ' + total + ' en Pagos';
         } else {
-          const nominasTotales = document.getElementById('nominasTotales');
-          nominasTotales.innerHTML = '';
+          const entradas = document.getElementById('entradas');
+          entradas.innerHTML = '';
           alert("No se encontraron registros para el mes seleccionado.");
         }
       })

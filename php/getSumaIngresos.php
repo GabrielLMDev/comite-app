@@ -13,21 +13,14 @@ if ($conn->connect_error) {
 
 $mesSeleccionado = $_GET['mes'];
 
-$sql = "SELECT idEmpleado, SUM(monto) as total_pago
-        FROM pagos
-        WHERE resumenMensual LIKE '%$mesSeleccionado%'
-        GROUP BY idEmpleado";
+// Consulta SQL para seleccionar registros de la tabla "nominas" según el mes seleccionado
+$sql = "SELECT SUM(monto) AS total_de_importes FROM pagos 
+WHERE resumenMensual LIKE'%$mesSeleccionado%'";
 
 $result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $pagos = array();
-    while ($row = $result->fetch_assoc()) {
-        $pagos[] = $row;
-    }
-    echo json_encode($pagos);
-} else {
-    echo json_encode(array());
+if ($result) {
+    $row = $result->fetch_assoc();
+    $totalImportes = $row['total_de_importes'];
+    echo json_encode($totalImportes);
 }
-
 $conn->close();

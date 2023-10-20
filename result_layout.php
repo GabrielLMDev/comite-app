@@ -111,7 +111,7 @@ if (isset($_GET['cliente_contrato'])) {
                     </a>
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="ingresos.php" id="new_convenio">Ver Ingresos</a>
+                            <a class="collapse-item" href="ingresos.html" id="new_convenio">Ver Ingresos</a>
                             <a class="collapse-item" href="egresos.html" id="new_convenio">Ver Egresos</a>
                             <a class="collapse-item" href="nominas_pagadas.html">Ver Nominas Pagadas</a>
                         </div>

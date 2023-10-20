@@ -12,9 +12,8 @@ if ($conn->connect_error) {
 }
 
 // Obtenemos el mes seleccionado desde JavaScript
-$mesSeleccionado = $_GET['mes']; // Asegúrate de que este nombre coincida con el valor enviado desde JavaScript
+$mesSeleccionado = $_GET['mes']; 
 
-// Consulta SQL para seleccionar registros de la tabla "nominas" según el mes seleccionado
 $sql = "SELECT * FROM egresos WHERE resumenMensual LIKE '%$mesSeleccionado%'
         ORDER BY resumenMensual ASC, folio ASC";
 

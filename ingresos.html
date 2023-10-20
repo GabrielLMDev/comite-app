@@ -10,7 +10,9 @@
   <title>Comite - Workspace</title>
   <link rel="shortcut icon" href="vendor/assets/LogoNAPA.ico" type="image/x-icon" />
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap"
+    rel="stylesheet" />
   <link href="css/styles_comite_app.css?v=1.2.8" rel="stylesheet" />
 </head>
 
@@ -44,7 +46,8 @@
 
       <!-- Menu pagos -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
           <i class="fas fa-search-dollar"></i>
           <span>Pagos y Consultas</span>
         </a>
@@ -64,11 +67,13 @@
         <div class="sidebar-heading">Tesorero</div>
         <!-- Menu Egresos -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-hand-holding-usd"></i>
             <span>Egresos</span>
           </a>
-          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="registrar_egreso.html">Registrar Egreso</a>
               <a class="collapse-item" href="registrar_nomina.html">Pago Nómina</a>
@@ -90,13 +95,14 @@
         <hr class="sidebar-divider" />
 
         <li class="nav-item active" style="margin-top: -14px;">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="#collapsePages">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="#collapsePages">
             <i class="fas fa-hand-holding-usd"></i>
             <span>Ver Entradas y Salidas</span>
           </a>
           <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="ingresos.php" id="new_convenio">Ver Ingresos</a>
+              <a class="collapse-item" href="ingresos.html" id="new_convenio">Ver Ingresos</a>
               <a class="collapse-item" href="egresos.html" id="new_convenio">Ver Egresos</a>
               <a class="collapse-item" href="nominas_pagadas.html">Ver Nominas Pagadas</a>
             </div>
@@ -138,7 +144,8 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
               </a>
@@ -162,54 +169,36 @@
                 Ingresos
               </h6>
             </div>
-            <div class="card-body">
-              <?php
-              $conn = new mysqli("localhost", "root", "America.10", "comite-app");
-              if ($conn->connect_error) {
-                die("Error de conexión a
-                la base de datos: " . $conn->connect_error);
-              }
-              $query = "SELECT
-                SUM(monto) AS total_de_importes FROM pagos";
-              $result =
-                $conn->query($query);
-              if ($result) {
-                $row =
-                  $result->fetch_assoc();
-                $totalImportes =
-                  $row['total_de_importes'];
-                echo "Entradas totales de 2023: $" .
-                  $totalImportes;
-              } else {
-                echo "Error al ejecutar la consulta: "
-                  . $conn->error;
-              }
-              $conn->close(); ?>
-            </div>
-            <div id="datos_consulta">
-              <form id="search_user_form" style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                  ">
-                <div style="
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                    ">
-                  <label for="inicio" style="width: 300px">Fecha de Inicio</label>
-                  <input type="date" name="inicio" id="inicio" style="margin: 5px" class="form-control" required />
-                  <label for="inicio" style="width: 50px; margin-left: 10px">a</label>
-                  <input type="date" name="final" id="final" style="margin: 5px" class="form-control" required />
+            <div id="datos_consulta" style="padding-top: 20px;">
+              <form id="search_user_form"
+                style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div style="display: flex; justify-content: center; align-items: center;">
+                  <label for="inicio" style="width: 250px">Mes a Consultar:</label>
+                  <select name="mes" id="mes" style="margin: 5px" class="form-control" required>
+                    <option value="">Selecciona Mes</option>
+                    <option value="enero">Enero</option>
+                    <option value="febrero">Febrero</option>
+                    <option value="marzo">Marzo</option>
+                    <option value="abril">Abril</option>
+                    <option value="mayo">Mayo</option>
+                    <option value="junio">Junio</option>
+                    <option value="julio">Julio</option>
+                    <option value="agosto">Agosto</option>
+                    <option value="septiembre">Septiembre</option>
+                    <option value="octubre">Octubre</option>
+                    <option value="noviembre">Noviembre</option>
+                    <option value="diciembre">Diciembre</option>
+                  </select>
                 </div>
-                <input type="submit" class="btn btn-primary btn-lg" style="width: 200px; margin-top: 10px" value="Buscar Ingresos" />
+                <input type="submit" class="btn btn-primary btn-lg" style="width: 200px; margin-top: 10px"
+                  value="Buscar Ingresos" />
               </form>
             </div>
             <div id="tabla_hidde" hidden>
               <div class="card-body" style="text-align: center">
                 <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                    style="text-align: center">
                     <thead>
                       <tr>
                         <th>ID Empleado</th>
@@ -259,7 +248,8 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -289,7 +279,7 @@
   <script src="vendor/datatables/jquery.dataTables.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <script type="module" src="js/03102023.js?v=1.2.9"></script>
-  <script type="module" src="js/14102023.js?v=1.1.5"></script>
+  <script type="module" src="js/19102311.js?v=1.0.2"></script>
 </body>
 
 </html>
