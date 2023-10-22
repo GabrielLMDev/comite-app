@@ -7,13 +7,19 @@ let newfolio;
 let folio_pago;
 search_user_Form.addEventListener("submit", function (e) {
   e.preventDefault();
-  var n_User = new FormData(search_user_Form);
-  fetch("./php/getCliente.php", {
-    method: "POST",
-    body: n_User,
-  })
-    .then((res) => res.json())
-    .then((data) => {
+  const inputBusqueda = document.getElementById("busqueda");
+  let busqueda = inputBusqueda.value;
+  const urlPayment = './php/getCliente.php';
+  const data = {
+    busqueda: busqueda,
+  };
+
+  const params = new URLSearchParams(data);
+  const fullURL = `${urlPayment}?${params}`;
+
+  fetch(fullURL)
+    .then(response => response.json())
+    .then(data => {
       var mensaje, titulo;
       if (data != "No_Existe") {
         buscar_contrato.hidden = true;
@@ -64,6 +70,13 @@ search_user_Form.addEventListener("submit", function (e) {
         mensaje = "No existen datos del cliente";
         showCustomAlert(titulo, mensaje);
       }
+
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      titulo = "ERROR";
+      mensaje = error;
+      showCustomAlert(titulo, mensaje);
     });
 });
 
@@ -99,66 +112,7 @@ function hideCustomAlert() {
   var customAlert = document.getElementById("customAlert");
   customAlert.style.display = "none";
 }
-/*
-$(document).ready(function () {
-  var selectPeriodos = $("#periodo");
-  var montoSeleccionado = $("#total_pago");
 
-  // Realizar una solicitud AJAX para obtener los datos desde PHP
-  $.ajax({
-    url: "./php/getPeriodo.php",
-    dataType: "json",
-    success: function (data) {
-      // Llenar el select con los datos recibidos
-      if (data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-          var fechaStr = data[i].fecha;
-          var fechaObj = new Date(fechaStr);
-          var year = fechaObj.getFullYear();
-          var month = fechaObj.getMonth() + 1; // El mes comienza desde 0
-          var day = fechaObj.getDate();
-          var fechaFormateada =
-            year +
-            "-" +
-            (month < 10 ? "0" : "") +
-            month +
-            "-" +
-            (day < 10 ? "0" : "") +
-            day;
-          selectPeriodos.append(
-            $("<option>", {
-              value: data[i].idPeriodo,
-              text: data[i].nombre_periodo + " - " + fechaFormateada,
-            })
-          );
-        }
-
-        // Configurar un controlador de eventos para el cambio de selección
-        selectPeriodos.on("change", function () {
-          var selectedId = $(this).val();
-          //                    obtenerMontoPorId(data, selectedId);
-          if (selectedId == 0) {
-            montoSeleccionado.text("Selecciona periodo");
-            btn_pago.disabled = true;
-          } else {
-            var selectedMonto = data[selectedId - 1].monto;
-            var periodoId = data[selectedId - 1].idPeriodo;
-            id_periodo = periodoId;
-            montoPago = selectedMonto;
-            montoSeleccionado.text(selectedMonto);
-            btn_pago.disabled = false;
-          }
-        });
-      } else {
-        console.log("No se encontraron registros en la tabla periodos.");
-      }
-    },
-    error: function (xhr, status, error) {
-      console.error("Error en la solicitud AJAX: " + status + " - " + error);
-    },
-  });
-});
-*/
 function mostrarAdeudo(nCliente) {
   var radiosContainer = $("#radios-container");
   var montoSeleccionado = $("#total_pago");
@@ -239,14 +193,14 @@ payment_user_form.addEventListener("submit", function (e) {
   const observaciones = document.getElementById("observaciones");
   obs = observaciones.value;
   e.preventDefault();
-    const urlPayment = './php/setPago.php';
-    const data = {
-      contrato: contrato,
-      cliente: cliente,
-      id_periodo: id_periodo,
-      obs: obs,
-      montoPago: montoPago
-    };
+  const urlPayment = './php/setPago.php';
+  const data = {
+    contrato: contrato,
+    cliente: cliente,
+    id_periodo: id_periodo,
+    obs: obs,
+    montoPago: montoPago
+  };
 
   const params = new URLSearchParams(data);
   const fullURL = `${urlPayment}?${params}`;

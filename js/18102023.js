@@ -12,6 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
     bancario.value = '1';
     bancario.text = "Deposito";
     pago.appendChild(bancario);
+
 });
 
 const salarios_payment_form = document.getElementById("salarios_payment_form");

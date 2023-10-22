@@ -147,7 +147,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
-                <img class="img-profile rounded-circle" src="" id="avatarImg"/>
+                <img class="img-profile rounded-circle" src="" id="avatarImg" />
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -163,7 +163,100 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+          <style>
+            .container-form {
+              max-width: 75vw;
+              margin: 0 auto;
+              padding: 20px;
+              margin-bottom: 20px;
+              background-color: #fff;
+              border-radius: 5px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 70vh;
+            }
 
+            h2 {
+              text-align: center;
+            }
+
+            label {
+              display: block;
+              margin-top: 10px;
+              margin-right: 10px;
+            }
+
+            input[type="text"],
+            input[type="number"] {
+              width: 50%;
+              padding: 10px;
+              margin-top: 5px;
+              margin-right: 10px;
+              margin-bottom: 15px;
+              border: 1px solid #ccc;
+              border-radius: 8px;
+            }
+
+            select {
+              width: 50%;
+              padding: 10px;
+              margin-top: 5px;
+              margin-right: 10px;
+              margin-bottom: 15px;
+              border: 1px solid #ccc;
+              border-radius: 8px;
+            }
+
+            input[type="submit"] {
+              background-color: #0c3b29;
+              color: white;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              margin-right: 10px;
+            }
+
+            input[type="submit"]:hover {
+              background-color: #136143;
+            }
+          </style>
+          <div class="container-form">
+            <h2 style="margin-bottom: 50px;">Aportaciones</h2>
+            <form method="post" id="egresos_payment_form">
+              <div style="display: flex;">
+                <label for="donante">Donante:</label>
+                <input type="text" id="donante" name="donante" required>
+
+                <label for="beneficiario">Beneficiario:</label>
+                <input type="text" id="beneficiario" name="beneficiario" required>
+
+                <label for="monto">Monto:</label>
+                <input type="number" id="monto" name="monto" required>
+
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" required></select>
+              </div>
+              <div style="display: flex;">
+                <label for="tipo">Metodo de Pago:</label>
+                <select id="mPago" required onchange="formaPago()"></select>
+
+                <label for="folio">Folio o Numero de documento:</label>
+                <input type="text" id="folio" name="folio" placeholder="Referencia/Folio/Concepto" required>
+              </div>
+              <div style="display: flex;">
+                <label for="concepto">Concepto:</label>
+                <input type="text" id="concepto" name="concepto" style="width: 100%;" required>
+                
+                <input type="submit" value="Registrar Aportacion" style="margin-top: 5px; width: 20%; height: 30%;"
+                class="btn btn-primary">
+              </div>
+            </form>
+
+          </div>
         </div>
         <!-- /.container-fluid -->
       </div>
@@ -226,8 +319,8 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/i03102023.js?v=1.2.5"></script>
   <script type="module" src="js/03102023.js?v=1.4.2"></script>
+  <script src="js/22102023.js?v=1.0.2"></script>
 </body>
 
 </html>
