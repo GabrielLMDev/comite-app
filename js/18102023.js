@@ -24,6 +24,7 @@ salarios_payment_form.addEventListener("submit", function (e) {
     const inputBase = document.getElementById("sBase");
     const inputBonificacion = document.getElementById("sBonificacion");
     const inputDeduccion = document.getElementById("sDeduccion");
+    const selectPago = document.getElementById("pago");
 
     const nEmpleado = inputEmpleado.value;
     const puesto = inputPuesto.value;
@@ -31,12 +32,14 @@ salarios_payment_form.addEventListener("submit", function (e) {
     const sBase = inputBase.value;
     const sBonificacion = inputBonificacion.value;
     const sDeduccion = inputDeduccion.value;
+    const pago = selectPago.options[selectPago.selectedIndex].value;
 
     const url = './php/setNomina.php';
     const data = {
         nEmpleado: nEmpleado,
         puesto: puesto,
         n_pago: n_pago,
+        pago: pago,
         sBase: sBase,
         sBonificacion: sBonificacion,
         sDeduccion: sDeduccion
@@ -117,8 +120,8 @@ function formaPago() {
         const n_pago = document.getElementById('n_pago');
         n_pago.value = '';
     } else if (selectedOption === '') {
-        n_pago.value = 'Null';
+        n_pago.value = 'S/N';
     } else {
-        n_pago.value = 'Null';
+        n_pago.value = 'S/N';
     }
 }

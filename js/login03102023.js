@@ -43,11 +43,8 @@ function verificarCookie(nombreCookie) {
 var taskForm = document.getElementById("login_form");
 taskForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const inputUser = document.getElementById('user');
-  const inputPassword = document.getElementById('password')
-
-  let user = inputUser.value;
-  let password = inputPassword.value;
+  const user = document.getElementById('user');
+  const password = document.getElementById('password')
 
   const url = './php/getAccess.php';
   const data = {

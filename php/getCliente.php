@@ -1,6 +1,6 @@
 <?php
 require 'database.php';
-$cliente = $_POST['busqueda'];
+$cliente = $_GET['busqueda'];
 $cliente_datos;
 $records = $conn->prepare('SELECT * FROM `contratos_cliente` WHERE idContrato = :cliente OR idCliente = :cliente');
 $records->bindParam(':cliente', $cliente);

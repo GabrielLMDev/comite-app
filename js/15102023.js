@@ -120,7 +120,6 @@ function mostrarAdeudo(nCliente) {
     url: "./php/getPeriodosAdeudados.php?idCliente=" + nCliente,
     dataType: "json",
     success: function (data) {
-      console.log(data.idPeriodo)
       if (data.length > 0) {
         for (var i = 0; i < data.length; i++) {
           var fechaStr = data[i].fecha;
@@ -188,6 +187,9 @@ const payment_user_form = document.getElementById("payment_user_form");
 payment_user_form.addEventListener("submit", function (e) {
   const observaciones = document.getElementById("observaciones");
   obs = observaciones.value;
+  const inputtotal_pago = document.getElementById("total_pago");
+  let Pago = inputtotal_pago.value;
+
   e.preventDefault();
   const urlPayment = './php/setPago.php';
   const data = {
@@ -195,7 +197,7 @@ payment_user_form.addEventListener("submit", function (e) {
     cliente: cliente,
     id_periodo: id_periodo,
     obs: obs,
-    montoPago: montoPago
+    montoPago: Pago
   };
 
   const params = new URLSearchParams(data);

@@ -6,7 +6,7 @@ search_user_Form.addEventListener('submit', function (e) {
 
     const inputBusqueda = document.getElementById('busqueda');
 
-    let busqueda = inputBusqueda.ariaValueMax;
+    let busqueda = inputBusqueda.value;
 
     const url = './php/getCliente.php';
     const data = {
@@ -29,6 +29,7 @@ search_user_Form.addEventListener('submit', function (e) {
             }
         })
         .catch(error => {
+            var mensaje, titulo;
             titulo = 'ERROR';
             mensaje = error;
             showCustomAlert(titulo, mensaje);
