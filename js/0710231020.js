@@ -4,7 +4,9 @@ const search_user_Form = document.getElementById('search_user_form');
 search_user_Form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const busqueda = document.getElementById('busqueda');
+    const inputBusqueda = document.getElementById('busqueda');
+
+    let busqueda = inputBusqueda.ariaValueMax;
 
     const url = './php/getCliente.php';
     const data = {

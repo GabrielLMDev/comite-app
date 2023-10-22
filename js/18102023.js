@@ -18,12 +18,19 @@ const salarios_payment_form = document.getElementById("salarios_payment_form");
 salarios_payment_form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const nEmpleado = document.getElementById("nEmpleado");
-    const puesto = document.getElementById("puesto");
-    const n_pago = document.getElementById("n_pago");
-    const sBase = document.getElementById("sBase");
-    const sBonificacion = document.getElementById("sBonificacion");
-    const sDeduccion = document.getElementById("sDeduccion");
+    const inputEmpleado = document.getElementById("nEmpleado");
+    const inputPuesto = document.getElementById("puesto");
+    const inputPago = document.getElementById("n_pago");
+    const inputBase = document.getElementById("sBase");
+    const inputBonificacion = document.getElementById("sBonificacion");
+    const inputDeduccion = document.getElementById("sDeduccion");
+
+    const nEmpleado = inputEmpleado.value;
+    const puesto = inputPuesto.value;
+    const n_pago = inputPago.value;
+    const sBase = inputBase.value;
+    const sBonificacion = inputBonificacion.value;
+    const sDeduccion = inputDeduccion.value;
 
     const url = './php/setNomina.php';
     const data = {

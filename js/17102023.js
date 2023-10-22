@@ -4,10 +4,15 @@ const egresos_payment_form = document.getElementById("egresos_payment_form");
 egresos_payment_form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const concepto = document.getElementById('concepto');
-    const beneficiario = document.getElementById('beneficiario');
-    const monto = document.getElementById('monto');
-    const folio = document.getElementById('folio');
+    const inputConcepto = document.getElementById('concepto');
+    const inputBeneficiario = document.getElementById('beneficiario');
+    const inputMonto = document.getElementById('monto');
+    const inputFolio = document.getElementById('folio');
+
+    const concepto = inputConcepto.value;
+    const beneficiario = inputBeneficiario.value;
+    const monto = inputMonto.value;
+    const folio = inputFolio.value;
 
     const url = './php/setEgreso.php';
     const data = {

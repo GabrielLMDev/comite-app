@@ -3,11 +3,11 @@ const search_user_Form = document.getElementById('search_user_form');
 
 search_user_Form.addEventListener('submit', function (e) {
     e.preventDefault();
-    const folio = document.getElementById('folio');
-
+    const inputFolio = document.getElementById('folio');
+    let folio = inputFolio.value;
     const url = './php/getPago.php';
     const data = {
-        folio: folio.value,
+        folio: folio,
     };
     const params = new URLSearchParams(data);
     const fullURL = `${url}?${params}`;

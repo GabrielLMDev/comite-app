@@ -9,10 +9,11 @@ let mensaje, titulo;
 
 search_user_Form.addEventListener("submit", function (e) {
   e.preventDefault();
-  const busqueda = document.getElementById('busqueda');
+  const inputBusqueda = document.getElementById('busqueda');
+  let busqueda = inputBusqueda.value;
   const url = './php/getCliente.php';
   const data = {
-    busqueda: busqueda.value,
+    busqueda: busqueda,
   };
   const params = new URLSearchParams(data);
   const fullURL = `${url}?${params}`;

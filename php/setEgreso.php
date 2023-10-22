@@ -43,7 +43,7 @@ function setMov($folio, $monto, $beneficiario)
 function crear_folio()
 {
     // Conexión a la base de datos
-    $conn = new mysqli("localhost", "root", "America.10", "comite-app");
+    $conn = new mysqli("localhost", "u486552643_root", "Comite.App2023", "u486552643_ComiteApp");
 
     // Verificar la conexión
     if ($conn->connect_error) {
