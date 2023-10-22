@@ -112,39 +112,54 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   var user = Parameter.usuario;
-  let empleadosData = new FormData();
-  empleadosData.append("user", user);
-  fetch("./php/getEmpleados.php", {
-    method: "POST",
-    body: empleadosData,
-  })
-    .then((dat) => dat.json())
-    .then((datos) => {
+
+  const url = './php/getEmpleados.php';
+  const data = {
+    user: user,
+  };
+  const params = new URLSearchParams(data);
+  const fullURL = `${url}?${params}`;
+
+  fetch(fullURL)
+    .then(response => response.json())
+    .then(data => {
       const empleado = document.getElementById("empleado");
-      empleado.innerHTML = datos.nombre + " - (" + datos.id + ")";
+      empleado.innerHTML = data.nombre + " - (" + data.id + ")";
+      const avatarImg = document.getElementById('avatarImg');
+      avatarImg.src = `./php/avatar_Index.php?id=${data.id}`;
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
 });
+
 let btn_logout = document.getElementById("btn_logout");
 btn_logout.addEventListener("click", function (e) {
   e.preventDefault();
   const jsonParameters = localStorage.getItem("parameters");
   const Parameter = JSON.parse(jsonParameters);
-  var user = Parameter.usuario;
-  console.log(Parameter.usuario);
-  let formData = new FormData();
-  formData.append("user", user);
-  fetch("./php/logout.php", {
-    method: "POST",
-    body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
+  const user = Parameter.usuario;
+
+  const url = './php/logout.php';
+  const data = {
+    user: user,
+  };
+  const params = new URLSearchParams(data);
+  const fullURL = `${url}?${params}`;
+
+  fetch(fullURL)
+    .then(response => response.json())
+    .then(data => {
       if (data === "Ok") {
         localStorage.removeItem("parameters");
         document.location.href = "./login.html";
       }
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
 });
+
 function verificarCookie(nombreCookie) {
   var todasLasCookies = document.cookie.split(";");
 

@@ -239,18 +239,21 @@ payment_user_form.addEventListener("submit", function (e) {
   const observaciones = document.getElementById("observaciones");
   obs = observaciones.value;
   e.preventDefault();
-  var setPago = new FormData();
-  setPago.append("contrato", contrato);
-  setPago.append("cliente", cliente);
-  setPago.append("id_periodo", id_periodo);
-  setPago.append("obs", obs);
-  setPago.append("montoPago", montoPago);
-  fetch("./php/setPago.php", {
-    method: "POST",
-    body: setPago,
-  })
-    .then((res) => res.json())
-    .then((data) => {
+    const urlPayment = './php/setPago.php';
+    const data = {
+      contrato: contrato,
+      cliente: cliente,
+      id_periodo: id_periodo,
+      obs: obs,
+      montoPago: montoPago
+    };
+
+  const params = new URLSearchParams(data);
+  const fullURL = `${urlPayment}?${params}`;
+
+  fetch(fullURL)
+    .then(response => response.json())
+    .then(data => {
       var mensaje, titulo;
       if (data.folio) {
         titulo = "PAGO CORRECTO";
@@ -269,5 +272,8 @@ payment_user_form.addEventListener("submit", function (e) {
         mensaje = "El Usuario ya cuenta con ese pago";
         showCustomAlert(titulo, mensaje);
       }
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
 });

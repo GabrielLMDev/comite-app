@@ -1,6 +1,6 @@
 <?php
     // Conectar a la base de datos (cambia estos valores según tu configuración)
-    $conexion = new mysqli("localhost", "root", "America.10", "comite-app");
+    $conexion = new mysqli("localhost", "u486552643_root", "Comite.App2023", "u486552643_ComiteApp");
     
     // Verificar la conexión
     if ($conexion->connect_error) {

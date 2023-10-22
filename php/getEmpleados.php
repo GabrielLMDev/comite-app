@@ -1,6 +1,6 @@
 <?php
 require 'database.php';
-$usuario = $_POST['user'];
+$usuario = $_GET['user'];
 $empleado;
 $records = $conn->prepare('SELECT * FROM datos_empleado WHERE idEmpleado = :user');
   $records->bindParam(':user', $usuario);

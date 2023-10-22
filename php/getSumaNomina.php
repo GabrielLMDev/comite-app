@@ -1,9 +1,9 @@
 <?php
 // Conexión a la base de datos
 $servername = "localhost";
-$username = "root";
-$password = "America.10";
-$database = "comite-app";
+$username = 'u486552643_root';
+$password = 'Comite.App2023';
+$database = 'u486552643_ComiteApp';
 
 $conn = new mysqli($servername, $username, $password, $database);
 

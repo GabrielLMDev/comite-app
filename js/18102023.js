@@ -17,13 +17,29 @@ window.addEventListener("DOMContentLoaded", () => {
 const salarios_payment_form = document.getElementById("salarios_payment_form");
 salarios_payment_form.addEventListener("submit", function (e) {
     e.preventDefault();
-    let datos = new FormData(salarios_payment_form);
-    fetch("./php/setNomina.php", {
-        method: "POST",
-        body: datos,
-    })
-        .then((res) => res.json())
-        .then((data) => {
+
+    const nEmpleado = document.getElementById("nEmpleado");
+    const puesto = document.getElementById("puesto");
+    const n_pago = document.getElementById("n_pago");
+    const sBase = document.getElementById("sBase");
+    const sBonificacion = document.getElementById("sBonificacion");
+    const sDeduccion = document.getElementById("sDeduccion");
+
+    const url = './php/setNomina.php';
+    const data = {
+        nEmpleado: nEmpleado,
+        puesto: puesto,
+        n_pago: n_pago,
+        sBase: sBase,
+        sBonificacion: sBonificacion,
+        sDeduccion: sDeduccion
+    };
+    const params = new URLSearchParams(data);
+    const fullURL = `${url}?${params}`;
+
+    fetch(fullURL)
+        .then(response => response.json())
+        .then(data => {
             var mensaje, titulo;
             if (data.folio) {
                 titulo = "SALARIO REGISTRADO";
@@ -44,6 +60,12 @@ salarios_payment_form.addEventListener("submit", function (e) {
                 mensaje = "Error al ingresar el movimiento.";
                 showCustomAlert(titulo, mensaje);
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            titulo = "ERROR";
+            mensaje = error;
+            showCustomAlert(titulo, mensaje);
         });
 });
 

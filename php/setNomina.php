@@ -1,13 +1,13 @@
 <?php
 require 'database.php';
-$nEmpleado = $_POST['nEmpleado'];
-$puesto = $_POST['puesto'];
-$pago = $_POST['pago'];
-$n_pago = $_POST['n_pago'];
+$nEmpleado = $_GET['nEmpleado'];
+$puesto = $_GET['puesto'];
+$pago = $_GET['pago'];
+$n_pago = $_GET['n_pago'];
 $idEmpleado = $_COOKIE['userId'];
-$sBase = $_POST['sBase'];
-$sBonificacion = $_POST['sBonificacion'];
-$sDeduccion = $_POST['sDeduccion'];
+$sBase = $_GET['sBase'];
+$sBonificacion = $_GET['sBonificacion'];
+$sDeduccion = $_GET['sDeduccion'];
 $folio = crear_folio();
 $pasar_folio;
 

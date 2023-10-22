@@ -4,26 +4,32 @@ window.addEventListener('DOMContentLoaded', () => {
   showCustomAlert(titulo, mensaje);
   const jsonParameters = localStorage.getItem("parameters");
   const Parameter = JSON.parse(jsonParameters);
-  var user = Parameter.usuario;
-  let empleadosData = new FormData();
-  empleadosData.append("user", user);
-  fetch("./php/getEmpleados.php", {
-    method: "POST",
-    body: empleadosData,
-  })
-    .then((dat) => dat.json())
-    .then((datos) => {
+  let user = Parameter.usuario;
+
+  const url = './php/getEmpleados.php';
+  const data = {
+    user: user,
+  };
+  const params = new URLSearchParams(data);
+  const fullURL = `${url}?${params}`;
+
+  fetch(fullURL)
+    .then(response => response.json())
+    .then(data => {
       const nombre = document.getElementById("nombre");
-      nombre.innerHTML = datos.nombre;
+      nombre.innerHTML = data.nombre;
       const id = document.getElementById("id");
-      id.innerHTML = 'Numero de empleado: ' + datos.id;
+      id.innerHTML = 'Numero de empleado: ' + data.id;
       const zona = document.getElementById("zona");
-      zona.innerHTML = 'Zona: ' + datos.zona;
+      zona.innerHTML = 'Zona: ' + data.zona;
       const tipo = document.getElementById("tipo");
       tipo.innerHTML = 'Puesto: ' + Parameter.tipo;
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
-  
-    const nombreCookie = 'userId';
+
+  const nombreCookie = 'userId';
   const valorId = getCookie(nombreCookie);
 
   if (valorId !== null) {

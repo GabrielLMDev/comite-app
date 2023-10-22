@@ -1,7 +1,7 @@
 <?php
 require 'database.php';
-$usuario_login = $_POST['user'];
-$pass_login = $_POST['password'];
+$usuario_login = $_GET['user'];
+$pass_login = $_GET['password'];
 $datos;
 
 if ($usuario_login === '' || $pass_login === '') {
@@ -12,7 +12,7 @@ if ($usuario_login === '' || $pass_login === '') {
   $records->execute();
   $results = $records->fetch(PDO::FETCH_ASSOC);
   if ($results > 0) {
-    if (password_verify($_POST['password'], $results['password'])) {
+    if (password_verify($_GET['password'], $results['password'])) {
       $tipo = $results['tipo'];
       $rol = $results['rol'];
       setMov($tipo, $rol);
@@ -29,10 +29,10 @@ function setMov($tipo, $rol)
   $concept = 'INICIO DE SESION';
   $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto) VALUES (:user, :concepto)";
   $stmt = $conn->prepare($sql);
-  $stmt->bindParam(':user', $_POST['user']);
+  $stmt->bindParam(':user', $_GET['user']);
   $stmt->bindParam(':concepto', $concept);
   if ($stmt->execute()) {
-    $datos['usuario'] = $_POST['user'];
+    $datos['usuario'] = $_GET['user'];
     $datos['tipo'] = $tipo;
     $datos['rol'] = $rol;
     $datos['fecha_sesion'] = date('Y-m-d');

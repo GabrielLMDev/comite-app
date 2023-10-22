@@ -204,7 +204,7 @@ if (isset($_GET['cliente_contrato'])) {
                                     </tfoot>
                                     <tbody>
                                         <?php
-                                        $conexion = new mysqli("localhost", "root", "America.10", "comite-app");
+                                        $conexion = new mysqli("localhost", "u486552643_root", "Comite.App2023", "u486552643_ComiteApp");
 
                                         // Verificar la conexión
                                         if ($conexion->connect_error) {
@@ -227,9 +227,9 @@ if (isset($_GET['cliente_contrato'])) {
                                             $conexion->close();
 
                                             $server = 'localhost';
-                                            $username = 'root';
-                                            $password = 'America.10';
-                                            $database = 'comite-app';
+                                            $username = 'u486552643_root';
+                                            $password = 'Comite.App2023';
+                                            $database = 'u486552643_ComiteApp';
                                             try {
                                                 $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
                                             } catch (PDOException $e) {

@@ -1,10 +1,10 @@
 <?php
 require 'database.php';
-$concepto = $_POST['concepto'];
-$beneficiario = $_POST['beneficiario'];
-$monto = $_POST['monto'];
+$concepto = $_GET['concepto'];
+$beneficiario = $_GET['beneficiario'];
+$monto = $_GET['monto'];
 $idEmpleado = $_COOKIE['userId'];
-$n_documento = $_POST['folio'];
+$n_documento = $_GET['folio'];
 $folio = crear_folio();
 $pasar_folio;
 

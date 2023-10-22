@@ -1,6 +1,6 @@
 <?php
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=comite-app", "root", "America.10"); 
+    $pdo = new PDO("mysql:host=localhost;dbname=u486552643_ComiteApp", "u486552643_root", "Comite.App2023");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $idCliente = isset($_GET['idCliente']) ? $_GET['idCliente'] : null;

@@ -3,13 +3,25 @@ const egresos_payment_form = document.getElementById("egresos_payment_form");
 
 egresos_payment_form.addEventListener("submit", function (e) {
     e.preventDefault();
-    let n_User = new FormData(egresos_payment_form);
-    fetch("./php/setEgreso.php", {
-        method: "POST",
-        body: n_User,
-    })
-        .then((res) => res.json())
-        .then((data) => {
+
+    const concepto = document.getElementById('concepto');
+    const beneficiario = document.getElementById('beneficiario');
+    const monto = document.getElementById('monto');
+    const folio = document.getElementById('folio');
+
+    const url = './php/setEgreso.php';
+    const data = {
+        concepto: concepto,
+        beneficiario: beneficiario,
+        monto: monto,
+        folio: folio
+    };
+    const params = new URLSearchParams(data);
+    const fullURL = `${url}?${params}`;
+
+    fetch(fullURL)
+        .then(response => response.json())
+        .then(data => {
             var mensaje, titulo;
             if (data.folio) {
                 titulo = "EGRESO REGISTRADO";
@@ -32,6 +44,12 @@ egresos_payment_form.addEventListener("submit", function (e) {
                 mensaje = "Error al ingresar el movimiento.";
                 showCustomAlert(titulo, mensaje);
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            titulo = "ERROR";
+            mensaje = error;
+            showCustomAlert(titulo, mensaje);
         });
 });
 

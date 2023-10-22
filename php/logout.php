@@ -1,6 +1,6 @@
 <?php
 require 'database.php';
-$user = $_POST['user'];
+$user = $_GET['user'];
 $concept = 'CIERRE DE SESION';
 $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto) VALUES (:user, :concepto)";
 $stmt = $conn->prepare($sql);

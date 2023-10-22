@@ -1,8 +1,8 @@
 <?php
 $server = 'localhost';
-$username = 'root';
-$password = 'America.10';
-$database = 'comite-app';
+$username = 'u486552643_root';
+$password = 'Comite.App2023';
+$database = 'u486552643_ComiteApp';
 try {
   $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
 } catch (PDOException $e) {

@@ -6,7 +6,6 @@ if (isset($_GET['folio_pago'])) {
     header("HTTP/1.0 404 Not Found");
     header("Location: 404.html");
     // Puedes redirigir al usuario a una página 404 personalizada si lo deseas.
-    // header("Location: pagina404.html");
     exit;
 }
 ?>

@@ -6,15 +6,20 @@ let contrato, cliente, id_periodo, obs, montoPago;
 let newfolio;
 let folio_pago;
 let mensaje, titulo;
+
 search_user_Form.addEventListener("submit", function (e) {
   e.preventDefault();
-  var n_User = new FormData(search_user_Form);
-  fetch("./php/getCliente.php", {
-    method: "POST",
-    body: n_User,
-  })
-    .then((res) => res.json())
-    .then((data) => {
+  const busqueda = document.getElementById('busqueda');
+  const url = './php/getCliente.php';
+  const data = {
+    busqueda: busqueda.value,
+  };
+  const params = new URLSearchParams(data);
+  const fullURL = `${url}?${params}`;
+
+  fetch(fullURL)
+    .then(response => response.json())
+    .then(data => {
       var mensaje, titulo;
       if (data != "No_Existe") {
         buscar_contrato.hidden = true;
@@ -65,6 +70,9 @@ search_user_Form.addEventListener("submit", function (e) {
         mensaje = "No existen datos del cliente";
         showCustomAlert(titulo, mensaje);
       }
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
 });
 
@@ -178,22 +186,24 @@ function mostrarAdeudo(nCliente) {
 const payment_user_form = document.getElementById("payment_user_form");
 payment_user_form.addEventListener("submit", function (e) {
   const observaciones = document.getElementById("observaciones");
-  const total_pago = document.getElementById("total_pago");
   obs = observaciones.value;
-  montoPago = total_pago.value;
   e.preventDefault();
-  var setPago = new FormData();
-  setPago.append("contrato", contrato);
-  setPago.append("cliente", cliente);
-  setPago.append("id_periodo", id_periodo);
-  setPago.append("obs", obs);
-  setPago.append("montoPago", montoPago);
-  fetch("./php/setPago.php", {
-    method: "POST",
-    body: setPago,
-  })
-    .then((res) => res.json())
-    .then((data) => {
+  const urlPayment = './php/setPago.php';
+  const data = {
+    contrato: contrato,
+    cliente: cliente,
+    id_periodo: id_periodo,
+    obs: obs,
+    montoPago: montoPago
+  };
+
+  const params = new URLSearchParams(data);
+  const fullURL = `${urlPayment}?${params}`;
+
+  fetch(fullURL)
+    .then(response => response.json())
+    .then(data => {
+      var mensaje, titulo;
       if (data.folio) {
         titulo = "PAGO CORRECTO";
         mensaje = "El pago se ha realizado de manera exitosa.";
@@ -211,5 +221,11 @@ payment_user_form.addEventListener("submit", function (e) {
         mensaje = "El Usuario ya cuenta con ese pago";
         showCustomAlert(titulo, mensaje);
       }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      titulo = "ERROR";
+      mensaje = error;
+      showCustomAlert(titulo, mensaje);
     });
 });

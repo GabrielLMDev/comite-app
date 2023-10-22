@@ -3,23 +3,35 @@ const search_user_Form = document.getElementById('search_user_form');
 
 search_user_Form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var n_User = new FormData(search_user_Form);
-    fetch('./php/getCliente.php', {
-        method: 'POST',
-        body: n_User
-    })
-        .then(res => res.json())
+
+    const busqueda = document.getElementById('busqueda');
+
+    const url = './php/getCliente.php';
+    const data = {
+        busqueda: busqueda,
+    };
+    const params = new URLSearchParams(data);
+    const fullURL = `${url}?${params}`;
+
+    fetch(fullURL)
+        .then(response => response.json())
         .then(data => {
             var mensaje, titulo;
             if (data != 'No_Existe') {
                 buscar_contrato.hidden = true;
-                document.location.href = "./result_layout.php?cliente_contrato="+data.idCliente;
+                document.location.href = "./result_layout.php?cliente_contrato=" + data.idCliente;
             } else if (data === 'No_Existe') {
                 titulo = 'ERROR EN BUSQUEDA';
                 mensaje = 'El Contrato o Cliente no existe';
                 showCustomAlert(titulo, mensaje);
             }
         })
+        .catch(error => {
+            titulo = 'ERROR';
+            mensaje = error;
+            showCustomAlert(titulo, mensaje);
+            console.error('Error:', error);
+        });
 });
 
 let customAlertButton = document.getElementById('customAlertButton');

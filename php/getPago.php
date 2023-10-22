@@ -1,6 +1,6 @@
 <?php
 require 'database.php';
-$folio = $_POST['folio'];
+$folio = $_GET['folio'];
 $folio_datos;
 $records = $conn->prepare('SELECT * FROM `pagos` WHERE folio = :folio');
 $records->bindParam(':folio', $folio);

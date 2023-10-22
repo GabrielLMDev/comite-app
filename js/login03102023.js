@@ -43,13 +43,20 @@ function verificarCookie(nombreCookie) {
 var taskForm = document.getElementById("login_form");
 taskForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  var inf_login = new FormData(taskForm);
-  fetch("./php/getAccess.php", {
-    method: "POST",
-    body: inf_login,
-  })
-    .then((res) => res.json())
-    .then((data) => {
+  const user = document.getElementById('user');
+  const password = document.getElementById('password')
+
+  const url = './php/getAccess.php';
+  const data = {
+    user: user.value,
+    password: password.value
+  };
+  const params = new URLSearchParams(data);
+  const fullURL = `${url}?${params}`;
+
+  fetch(fullURL)
+    .then(response => response.json())
+    .then(data => {
       console.log(data);
       var mensaje, titulo;
       if (data.estatus === "Ok") {
@@ -69,8 +76,15 @@ taskForm.addEventListener("submit", function (e) {
         mensaje = "Usuario no registrado.";
         showCustomAlert(titulo, mensaje);
       }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      titulo = "ERROR";
+      mensaje = error;
+      showCustomAlert(titulo, mensaje);
     });
 });
+
 let customAlertButton = document.getElementById("customAlertButton");
 customAlertButton.addEventListener("click", function (e) {
   e.preventDefault();

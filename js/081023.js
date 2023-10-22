@@ -3,23 +3,31 @@ const search_user_Form = document.getElementById('search_user_form');
 
 search_user_Form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var folio = new FormData(search_user_Form);
-    fetch('./php/getPago.php', {
-        method: 'POST',
-        body: folio
-    })
-        .then(res => res.json())
+    const folio = document.getElementById('folio');
+
+    const url = './php/getPago.php';
+    const data = {
+        folio: folio.value,
+    };
+    const params = new URLSearchParams(data);
+    const fullURL = `${url}?${params}`;
+
+    fetch(fullURL)
+        .then(response => response.json())
         .then(data => {
             var mensaje, titulo;
             if (data != 'No_Existe') {
                 buscar_contrato.hidden = true;
-                document.location.href = "./result_pay.php?folio_pago="+data.folio;
+                document.location.href = "./result_pay.php?folio_pago=" + data.folio;
             } else if (data === 'No_Existe') {
                 titulo = 'ERROR EN BUSQUEDA';
                 mensaje = 'El Folio ingresado no existe';
                 showCustomAlert(titulo, mensaje);
             }
         })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 });
 
 let customAlertButton = document.getElementById('customAlertButton');

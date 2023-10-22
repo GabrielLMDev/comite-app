@@ -1,11 +1,12 @@
 <?php
 require 'database.php';
-$idContrato = $_POST['contrato'];
-$idCliente = $_POST['cliente'];
+
+$idContrato = $_GET['contrato'];
+$idCliente = $_GET['cliente'];
 $idEmpleado = $_COOKIE['userId'];
-$idPeriodo = $_POST['id_periodo'];
-$Obs = $_POST['obs'];
-$Monto = $_POST['montoPago'];
+$idPeriodo = $_GET['id_periodo'];
+$Obs = $_GET['obs'];
+$Monto = $_GET['montoPago'];
 $folio = crear_folio();
 $pasar_folio;
 
@@ -33,6 +34,7 @@ if ($results > 0) {
         echo json_encode('Error 947');
     }
 }
+
 
 function setMov($folio, $Monto, $idCliente)
 {
