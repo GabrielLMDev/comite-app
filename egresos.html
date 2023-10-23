@@ -147,7 +147,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
-                <img class="img-profile rounded-circle" src="" id="avatarImg"/>
+                <img class="img-profile rounded-circle" src="" id="avatarImg" />
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -229,6 +229,51 @@
                     <span id="entradas"></span>
                   </div>
                 </div>
+                <hr class="sidebar-divider" style="margin-top: 30px;" />
+                <div style="margin: 30px;">
+                  <h6 class="m-0 font-weight-bold" style="font-size: 20px; color: #000;">
+                    APORTACIONES
+                  </h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTableAportaciones" width="100%" cellspacing="0"
+                    style="text-align: center">
+                    <thead>
+                      <tr>
+                        <th>Concepto</th>
+                        <th>Beneficiario</th>
+                        <th>Monto</th>
+                        <th>Resumen Mensual</th>
+                        <th>Registrado por</th>
+                        <th>Fecha</th>
+                        <th>Folio</th>
+                        <th>Tipo</th>
+                        <th>Metodo Pago</th>
+                        <th>Folio (Bancario)</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+
+                    <tfoot>
+                      <tr>
+                        <th>Concepto</th>
+                        <th>Beneficiario</th>
+                        <th>Monto</th>
+                        <th>Resumen Mensual</th>
+                        <th>Registrado por</th>
+                        <th>Fecha</th>
+                        <th>Folio</th>
+                        <th>Tipo</th>
+                        <th>Metodo Pago</th>
+                        <th>Folio (Bancario)</th>
+                      </tr>
+                    </tfoot>
+                    <tbody></tbody>
+                  </table>
+                  <div class="card-body">
+                    <span id="sumaAportaciones"></span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -288,8 +333,8 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="vendor/datatables/jquery.dataTables.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-  <script type="module" src="js/03102023.js?v=1.2.9"></script>
-  <script type="module" src="js/14102023.js?v=1.1.7"></script>
+  <script type="module" src="js/03102023.js?v=2.0.0"></script>
+  <script type="module" src="js/14102023.js?v=2.0.0"></script>
 </body>
 
 </html>

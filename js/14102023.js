@@ -12,7 +12,7 @@ mesSelect.addEventListener("change", function () {
   console.log("Mes seleccionado:", mesSeleccionado);
 });
 function formaPago(valor) {
-  if (valor) {
+  if (valor === '0') {
     return 'EFECTIVO';
   } else {
     return 'DEPOSITO';
@@ -27,6 +27,7 @@ function formatearMoneda(valor) {
 }
 document.addEventListener("DOMContentLoaded", function () {
   const dataTable = $("#dataTable").DataTable();
+  const dataTableAportaciones = $("#dataTableAportaciones").DataTable();
 
   search_user_Form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ]).draw();
           });
         } else {
-          alert("No se encontraron registros para el mes seleccionado.");
+          alert("No se encontraron egresos para el mes seleccionado.");
         }
       })
       .catch((error) => console.error("Error al hacer la solicitud:", error));
@@ -70,10 +71,58 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           const entradas = document.getElementById('entradas');
           entradas.innerHTML = '';
-          alert("No se encontraron registros para el mes seleccionado.");
         }
       })
       .catch((error) => console.error("Error al hacer la solicitud:", error));
+
+    ///////////////////////////////////////////////////////////////////
+
+    fetch(
+      `./php/getAportacionesporMes.php?mes=` + mesSeleccionado
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        dataTableAportaciones.clear().draw();
+        if (data.length > 0) {
+          // Agregar los nuevos datos a la tabla
+          data.forEach((aportaciones) => {
+            dataTableAportaciones.row.add([
+              aportaciones.concepto,
+              aportaciones.beneficiario,
+              formatearMoneda(aportaciones.monto),
+              aportaciones.resumenMensual,
+              aportaciones.idEmpleado,
+              aportaciones.fecha,
+              aportaciones.folio,
+              aportaciones.tipo,
+              formaPago(aportaciones.metodo_pago),
+              aportaciones.folio_documento
+            ]).draw();
+          });
+        } else {
+          alert("No se encontraron aportaciones para el mes seleccionado.");
+        }
+      })
+      .catch((error) => console.error("Error al hacer la solicitud:", error));
+
+    fetch(
+      `./php/getSumaAportaciones.php?mes=` + mesSeleccionado
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length > 0) {
+          let total = formatearMoneda(data);
+          const sumaAportaciones = document.getElementById('sumaAportaciones');
+          sumaAportaciones.innerHTML = 'En el mes de ' + mesSeleccionado + ' se ha gastado ' + total + ' en Aportaciones';
+        } else {
+          const sumaAportaciones = document.getElementById('sumaAportaciones');
+          sumaAportaciones.innerHTML = '';
+        }
+      })
+      .catch((error) => console.error("Error al hacer la solicitud:", error));
+
+
+
 
     tabla_hidde.hidden = false;
   });
