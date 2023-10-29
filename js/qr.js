@@ -7,6 +7,6 @@ function generarQRCode(texto) {
     });
 }
 window.addEventListener("DOMContentLoaded", () => {
-    var textoParaCodificar = "Prueba de Codigo QR hecho por Gabriel Luengas";
+    var textoParaCodificar = "https://siat.sat.gob.mx/app/qr/faces/pages/mobile/validadorqr.jsf?D1=10&D2=1&D3=14070780466_CAS9705281A8";
     generarQRCode(textoParaCodificar);
 });

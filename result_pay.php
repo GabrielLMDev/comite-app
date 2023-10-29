@@ -68,6 +68,8 @@ function setMov($folio_datos)
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap" rel="stylesheet">
     <link href="css/styles_comite_app.css?v=1.2.9" rel="stylesheet">
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.js"></script>
 
 
 </head>
@@ -202,7 +204,7 @@ function setMov($folio_datos)
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
-                                <img class="img-profile rounded-circle" src="" id="avatarImg"/>
+                                <img class="img-profile rounded-circle" src="" id="avatarImg" />
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -253,7 +255,7 @@ function setMov($folio_datos)
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-0">
                                                     NUMERO DE CLIENTE</div>
                                                 <div class="h5 mb-2 font-weight-bold text-gray-800">
-                                                    <span id="n_cliente"><?php echo $folio_datos['idCliente'] ?></script>
+                                                    <span id="n_cliente"><?php echo $folio_datos['idCliente'] ?>
                                                     </span>
                                                 </div>
                                             </div>
@@ -370,6 +372,10 @@ function setMov($folio_datos)
                                 </div>
                             </div>
 
+                            <div class="col-xl-3 col-md-6 mb-4" style="display: flex; justify-content: center; align-items: center;">
+                                <button class="btn btn-primary btn-lg" style="width: 200px" id="btn_print">IMPRIMIR RECIBO</button>
+                            </div>
+
                             <div class="card-body" style="display: flex; justify-content: center; align-items: center;">
                                 <!-- Imagen -->
                                 <div class="card shadow mb-4" style="height: 94%;">
@@ -460,11 +466,12 @@ function setMov($folio_datos)
         <button id="customAlertButton" class="custom-alert-button">Aceptar</button>
     </div>
 
+    <script type="module" src="js/pdf.js?v=1.8"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="js/demo/chart-pie-demo.js?v=1.0.8"></script>
+    <script src="js/demo/chart-pie-demo.js?v=1.0.9"></script>
     <script type="module" src="js/03102023.js?v=1.3.8"></script>
     <script type="module" src="js/qr.js?v=1.0.2"></script>
 

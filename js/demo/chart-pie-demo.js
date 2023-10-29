@@ -20,7 +20,10 @@ window.addEventListener('DOMContentLoaded', () => {
       periodosTotales = datos.totales;
       periodosTotales1 = periodosTotales - periodosPagados;
       pp.innerHTML = periodosPagados;
+      localStorage.setItem("pagados", periodosPagados);
       ppp.innerHTML = periodosTotales1;
+      localStorage.setItem("porpagar", periodosTotales1);
+      
       dataset = {
         data: [periodosPagados, periodosTotales1],
         backgroundColor: ['#f6c23e', '#e74a3b'],
