@@ -15,7 +15,7 @@ search_user_Form.addEventListener('submit', function (e) {
     fetch(fullURL)
         .then(response => response.json())
         .then(data => {
-            var mensaje, titulo;
+            let mensaje, titulo;
             if (data != 'No_Existe') {
                 buscar_contrato.hidden = true;
                 document.location.href = "./result_pay.php?folio_pago=" + data.folio;
@@ -37,29 +37,29 @@ customAlertButton.addEventListener('click', function (e) {
 })
 
 function showSuccess(titulo, mensaje) {
-    var customAlert = document.getElementById('customAlert');
+    let customAlert = document.getElementById('customAlert');
     customAlert.style.display = 'block';
 
-    var customAlertTitle = document.getElementById('customAlertTitle');
+    let customAlertTitle = document.getElementById('customAlertTitle');
     customAlertTitle.innerHTML = titulo;
 
-    var customAlertContent = document.getElementById('customAlertContent');
+    let customAlertContent = document.getElementById('customAlertContent');
     customAlertContent.innerHTML = mensaje;
 }
 
 function showCustomAlert(titulo, mensaje) {
-    var customAlert = document.getElementById('customAlert');
+    let customAlert = document.getElementById('customAlert');
     customAlert.style.display = 'block';
 
-    var customAlertTitle = document.getElementById('customAlertTitle');
+    let customAlertTitle = document.getElementById('customAlertTitle');
     customAlertTitle.innerHTML = titulo;
 
-    var customAlertContent = document.getElementById('customAlertContent');
+    let customAlertContent = document.getElementById('customAlertContent');
     customAlertContent.innerHTML = mensaje;
 }
 
 function hideCustomAlert() {
-    var customAlert = document.getElementById('customAlert');
+    let customAlert = document.getElementById('customAlert');
     customAlert.style.display = 'none';
     document.location.href = "./buscar_pago.html";
 }

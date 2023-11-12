@@ -1,6 +1,5 @@
 <?php
 //Version 2 - STABLE//
-/*DATOS CLIENTE VIENEN DE LAS PETICIONES DEL FORMULARIO*/
 require 'database.php';
 $cliente = $_GET['busqueda'];
 $cliente_datos;
@@ -26,19 +25,23 @@ function datosCliente($idCliente, $cliente_datos)
     $results = $records->fetch(PDO::FETCH_ASSOC);
     if ($results > 0) {
         $cliente_datos['nombre'] = $results['nombre'];
-        getPeriodo($cliente_datos);
+        getConvenio($idCliente, $cliente_datos);
     } else {
         echo json_encode('No_Existe_Datos');
     }
 }
 
-function getPeriodo($cliente_datos)
+function getConvenio($idCliente, $cliente_datos)
 {
     require 'database.php';
-    $records = $conn->prepare('SELECT * FROM `periodos`');
+    $records = $conn->prepare('SELECT * FROM `convenios` WHERE `idContrato` = :idContrato');
+    $records->bindParam(':idContrato', $idCliente);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
     if ($results > 0) {
+        echo json_encode('Convenio_Encontrado');
+    } else {
+        $cliente_datos['estatus'] = 'Ok';
         echo json_encode($cliente_datos);
     }
 }

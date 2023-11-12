@@ -1,4 +1,5 @@
 <?php
+//Version 2 - STABLE//
 require 'database.php';
 
 $donante = $_GET['donante'];
@@ -8,7 +9,10 @@ $tipo = $_GET['tipo'];
 $metodo = $_GET['metodo'];
 $n_documento = $_GET['folio'];
 $concepto = $_GET['concepto'];
-$idEmpleado = $_COOKIE['userId'];
+$cookie_name = "userId";
+$cookie_value = json_decode($_COOKIE[$cookie_name], true);
+$idEmpleado = $cookie_value['id'];
+$nombre = $cookie_value['nombre'];
 $folio = crear_folio();
 $pasar_folio;
 
@@ -26,19 +30,21 @@ $stmt->bindParam(':folio_documento', $n_documento);
 $stmt->bindParam(':idEmpleado', $idEmpleado);
 
 if ($stmt->execute()) {
-    setMov($folio, $monto, $beneficiario);
+    setMov($folio, $monto, $beneficiario, $idEmpleado, $nombre);
 } else {
     echo json_encode('Error 947');
 }
 
 
-function setMov($folio, $monto, $beneficiario)
+function setMov($folio, $monto, $beneficiario, $idEmpleado, $nombre)
 {
     require 'database.php';
     $concept = "APORTACION POR $" . $monto . " A BENEFICIARIO: " . $beneficiario . " CON NUMERO DE FOLIO: " . $folio;
-    $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto, folio_aportacion) VALUES (:user, :concepto, :folio)";
+    $sql = "INSERT INTO empleado_movimientos (idEmpleado, nombre, concepto, folio_aportacion) 
+    VALUES (:user, :nombre, :concepto, :folio)";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':user', $_COOKIE['userId']);
+    $stmt->bindParam(':user', $idEmpleado);
+    $stmt->bindParam(':nombre', $nombre);
     $stmt->bindParam(':concepto', $concept);
     $stmt->bindParam(':folio', $folio);
     if ($stmt->execute()) {

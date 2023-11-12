@@ -1,36 +1,44 @@
 <?php
+//Version 2 - STABLE//
 require 'database.php';
 $concepto = $_GET['concepto'];
 $beneficiario = $_GET['beneficiario'];
 $monto = $_GET['monto'];
-$idEmpleado = $_COOKIE['userId'];
+$cookie_name = "userId";
+$cookie_value = json_decode($_COOKIE[$cookie_name], true);
+$idEmpleado = $cookie_value['id'];
+$nombre = $cookie_value['nombre'];
 $n_documento = $_GET['folio'];
 $folio = crear_folio();
 $pasar_folio;
 
-$sql = "INSERT INTO egresos (concepto, beneficiario, monto, idEmpleado, folio, n_documento) VALUES (:concepto, :beneficiario, :monto, :idEmpleado, :folio, :n_documento)";
+$sql = "INSERT INTO egresos (concepto, beneficiario, monto, idEmpleado, nomEmpleado, folio, n_documento) 
+VALUES (:concepto, :beneficiario, :monto, :idEmpleado, :nomEmpleado, :folio, :n_documento)";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':concepto', $concepto);
 $stmt->bindParam(':beneficiario', $beneficiario);
 $stmt->bindParam(':monto', $monto);
 $stmt->bindParam(':idEmpleado', $idEmpleado);
+$stmt->bindParam(':nomEmpleado', $nombre);
 $stmt->bindParam(':folio', $folio);
 $stmt->bindParam(':n_documento', $n_documento);
 
 if ($stmt->execute()) {
-    setMov($folio, $monto, $beneficiario);
+    setMov($folio, $monto, $beneficiario, $idEmpleado, $nombre);
 } else {
     echo json_encode('Error 947');
 }
 
 
-function setMov($folio, $monto, $beneficiario)
+function setMov($folio, $monto, $beneficiario, $idEmpleado, $nombre)
 {
     require 'database.php';
     $concept = "EGRESO POR $" . $monto . " A BENEFICIARIO: " . $beneficiario . " CON NUMERO DE FOLIO: " . $folio;
-    $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto, folio_egreso) VALUES (:user, :concepto, :folio)";
+    $sql = "INSERT INTO empleado_movimientos (idEmpleado, nombre, concepto, folio_egreso) 
+    VALUES (:user, :nombre, :concepto, :folio)";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':user', $_COOKIE['userId']);
+    $stmt->bindParam(':user', $idEmpleado);
+    $stmt->bindParam(':nombre', $nombre);
     $stmt->bindParam(':concepto', $concept);
     $stmt->bindParam(':folio', $folio);
     if ($stmt->execute()) {

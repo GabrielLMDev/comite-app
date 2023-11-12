@@ -117,7 +117,8 @@ function mostrarAdeudo(nCliente) {
   var radiosContainer = $("#radios-container");
   var montoSeleccionado = $("#total_pago");
   var btnPago = $("#btn_pago");
-
+  let radioDiv, radio, label;
+  let sumaTotalMonto = 0;
   // Solicitud AJAX para obtener los periodos adeudados
   $.ajax({
     url: "./php/getPeriodosAdeudados.php?idCliente=" + nCliente,
@@ -125,6 +126,7 @@ function mostrarAdeudo(nCliente) {
     success: function (data) {
       if (data.length > 0) {
         for (var i = 0; i < data.length; i++) {
+          sumaTotalMonto += data[i].monto;
           var fechaStr = data[i].fecha;
           var fechaObj = new Date(fechaStr);
           var year = fechaObj.getFullYear();
@@ -140,16 +142,16 @@ function mostrarAdeudo(nCliente) {
             day;
 
 
-          var radioDiv = $("<div>");
+          radioDiv = $("<div>");
 
-          var radio = $("<input>", {
+          radio = $("<input>", {
             type: "radio",
             name: "periodo",
             value: data[i].monto,
             id: data[i].idPeriodo,
           });
 
-          var label = $("<label>", {
+          label = $("<label>", {
             for: data[i].idPeriodo,
             text: data[i].nombre_periodo + " - " + fechaFormateada,
           });
@@ -159,6 +161,25 @@ function mostrarAdeudo(nCliente) {
 
           radiosContainer.append(radioDiv);
         }
+        /*SELECCIONAR TODOS LOS PERIODOS*/
+        radioDiv = $("<div>");
+
+        radio = $("<input>", {
+          type: "radio",
+          name: "periodo",
+          value: sumaTotalMonto,
+          id: 10,
+        });
+
+        label = $("<label>", {
+          for: 10,
+          text: "PAGAR TODOS"
+        });
+
+        radioDiv.append(radio);
+        radioDiv.append(label);
+
+        radiosContainer.append(radioDiv);
 
         radiosContainer.on("change", 'input[type="radio"]', function () {
           id_periodo = $('input[type="radio"]:checked').attr("id");
@@ -173,7 +194,7 @@ function mostrarAdeudo(nCliente) {
             btnPago.prop("disabled", true);
           }
         });
-
+        console.log(sumaTotalMonto);
       } else {
         const mensaje_adeudo = document.getElementById('mensaje_adeudo');
         mensaje_adeudo.innerHTML = "El cliente no adeuda ningún periodo.";
@@ -185,8 +206,6 @@ function mostrarAdeudo(nCliente) {
     },
   });
 }
-
-
 
 const payment_user_form = document.getElementById("payment_user_form");
 payment_user_form.addEventListener("submit", function (e) {
@@ -221,7 +240,12 @@ payment_user_form.addEventListener("submit", function (e) {
         titulo = "ERROR 948";
         mensaje = "Error en segundo filtro, consultar con el administrador";
         showCustomAlert(titulo, mensaje);
-      } else if (data === "Pagado") {
+      } else if (data === "Error 117") {
+        titulo = "ERROR 117";
+        mensaje = "Error en filtro actualizar periodo, consultar con el administrador";
+        showCustomAlert(titulo, mensaje);
+      }
+      else if (data === "Pagado") {
         titulo = "PERIODO PAGADO";
         mensaje = "El Usuario ya cuenta con ese pago";
         showCustomAlert(titulo, mensaje);

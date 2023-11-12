@@ -62,6 +62,22 @@
       </li>
       <hr class="sidebar-divider" />
 
+      <li class="nav-item" style="margin-top: -14px;">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#conveniosPages" aria-expanded="true"
+          aria-controls="#conveniosPages">
+          <i class="fas fa-fw fa-file-invoice-dollar"></i>
+          <span>Convenios</span>
+        </a>
+        <div id="conveniosPages" class="collapse" aria-labelledby="conveniosPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="crear_convenio.html">Crear Convenio</a>
+            <a class="collapse-item" href="mostrar_convenio.html">Mostrar Convenio</a>
+          </div>
+        </div>
+      </li>
+
+      <hr class="sidebar-divider" />
+
       <div id="tesorero_div">
         <!-- Heading -->
         <div class="sidebar-heading">Tesorero</div>
@@ -94,7 +110,7 @@
 
         <hr class="sidebar-divider" />
 
-        <li class="nav-item active" style="margin-top: -14px;">
+        <li class="nav-item" style="margin-top: -14px;">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="#collapsePages">
             <i class="fas fa-hand-holding-usd"></i>
@@ -111,14 +127,7 @@
 
         <hr class="sidebar-divider" />
 
-        <!-- Nav Item - PRORROGA -->
-        <li class="nav-item" style="margin-top: -15px">
-          <a class="nav-link" href="crear_convenio.html">
-            <i class="fas fa-fw fa-file-invoice-dollar"></i>
-            <span>Crear Convenio</span></a>
-        </li>
       </div>
-
     </ul>
     <!-- FIN BARRA MENU -->
 
@@ -148,7 +157,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
-                <img class="img-profile rounded-circle" src="" id="avatarImg"/>
+                <img class="img-profile rounded-circle" src="" id="avatarImg" />
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -167,7 +176,7 @@
           <div class="card shadow mb-4" style="padding-bottom: 30px">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold" style="color: #ffff">
-                Ingresos
+                Nominas Pagadas
               </h6>
             </div>
             <div id="datos_consulta" style="padding-top: 20px;">
@@ -202,32 +211,22 @@
                     style="text-align: center">
                     <thead>
                       <tr>
-                        <th>ID Empleado</th>
-                        <th>Puesto</th>
-                        <th>Sueldo Base</th>
-                        <th>Bonificaciones</th>
-                        <th>Deducciones</th>
+                        <th>Empleado</th>
                         <th>Sueldo neto</th>
                         <th>Registrado por</th>
                         <th>Resumen Mensual</th>
                         <th>Forma de pago</th>
-                        <th>Referencia Bancaria</th>
                         <th>Folio</th>
                       </tr>
                     </thead>
                     <tbody></tbody>
                     <tfoot>
                       <tr>
-                        <th>ID Empleado</th>
-                        <th>Puesto</th>
-                        <th>Sueldo Base</th>
-                        <th>Bonificaciones</th>
-                        <th>Deducciones</th>
+                        <th>Empleado</th>
                         <th>Sueldo neto</th>
                         <th>Registrado por</th>
                         <th>Resumen Mensual</th>
                         <th>Forma de pago</th>
-                        <th>Referencia Bancaria</th>
                         <th>Folio</th>
                       </tr>
                     </tfoot>
@@ -297,7 +296,7 @@
   <script src="vendor/datatables/jquery.dataTables.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <script type="module" src="js/03102023.js?v=1.2.9"></script>
-  <script type="module" src="js/19102023.js?v=1.0.4"></script>
+  <script type="module" src="js/19102023.js?v=1.0.9"></script>
 </body>
 
 </html>

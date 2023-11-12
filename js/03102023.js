@@ -69,10 +69,6 @@
       passwordField.attr("type", "password");
     }
   });
-  $("#btn_logout").click(function (e) {
-    var nombreCookie = "userId";
-    establecerCookieConFechaDeAyer(nombreCookie);
-  });
 })(jQuery); // End of use strict
 
 function obtenerFechaAyer() {
@@ -92,8 +88,8 @@ window.addEventListener("DOMContentLoaded", () => {
   if (!verificarCookie("userId")) {
     document.location.href = "./login.html";
   }
-  const jsonParameters = localStorage.getItem("parameters");
-  const Parameter = JSON.parse(jsonParameters);
+  const cookieParametros = getCookie('parameters');
+  const Parameter = JSON.parse(cookieParametros);
   var rol_user = Parameter.rol;
 
   const convenioLink = document.getElementById("new_convenio");
@@ -136,13 +132,15 @@ window.addEventListener("DOMContentLoaded", () => {
 let btn_logout = document.getElementById("btn_logout");
 btn_logout.addEventListener("click", function (e) {
   e.preventDefault();
-  const jsonParameters = localStorage.getItem("parameters");
-  const Parameter = JSON.parse(jsonParameters);
-  const user = Parameter.usuario;
+
+  const cookieDatos = getCookie('userId');
+  const userData = JSON.parse(cookieDatos);
 
   const url = './php/logout.php';
+  console.log(userData);
   const data = {
-    user: user,
+    user: userData.id,
+    nombre: userData.nombre
   };
   const params = new URLSearchParams(data);
   const fullURL = `${url}?${params}`;
@@ -151,7 +149,8 @@ btn_logout.addEventListener("click", function (e) {
     .then(response => response.json())
     .then(data => {
       if (data === "Ok") {
-        localStorage.removeItem("parameters");
+        establecerCookieConFechaDeAyer("parameters");
+        establecerCookieConFechaDeAyer("userId");
         document.location.href = "./login.html";
       }
     })
@@ -175,4 +174,12 @@ function verificarCookie(nombreCookie) {
   }
   // La cookie no existe
   return false;
+}
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts.pop().split(';').shift();
+  }
+  return null;
 }

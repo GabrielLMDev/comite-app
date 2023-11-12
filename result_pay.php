@@ -11,6 +11,10 @@ if (isset($_GET['folio_pago'])) {
 ?>
 <?php
 require 'php/database.php';
+$cookie_name = "userId";
+$cookie_value = json_decode($_COOKIE[$cookie_name], true);
+$idEmpleado = $cookie_value['id'];
+$nombre = $cookie_value['nombre'];
 $folio_datos;
 $records = $conn->prepare('SELECT * FROM `pagos` WHERE folio = :folio');
 $records->bindParam(':folio', $dato);
@@ -34,18 +38,19 @@ if ($results > 0) {
 
     // Crea la cookie utilizando setcookie()
     setcookie($nombreCookie, $valorCookie, $tiempoCaducidad, "/");
-    setMov($folio_datos['folio']);
+    setMov($folio_datos['folio'], $idEmpleado, $nombre);
 } else {
     header("Location: 404.html");
 }
 
-function setMov($folio_datos)
+function setMov($folio_datos, $idEmpleado, $nombre)
 {
     require 'php/database.php';
     $concept = 'CONSULTA DE PAGO CON NUMERO DE FOLIO ' . $folio_datos;
-    $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto) VALUES (:user, :concepto)";
+    $sql = "INSERT INTO empleado_movimientos (idEmpleado, nombre, concepto) VALUES (:user, :nombre, :concepto)";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':user', $_COOKIE['userId']);
+    $stmt->bindParam(':user', $idEmpleado);
+    $stmt->bindParam(':nombre', $nombre);
     $stmt->bindParam(':concepto', $concept);
     if ($stmt->execute()) {
     } else {
@@ -121,6 +126,21 @@ function setMov($folio_datos)
             </li>
             <hr class="sidebar-divider" />
 
+            <li class="nav-item" style="margin-top: -14px;">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#conveniosPages" aria-expanded="true" aria-controls="#conveniosPages">
+                    <i class="fas fa-fw fa-file-invoice-dollar"></i>
+                    <span>Convenios</span>
+                </a>
+                <div id="conveniosPages" class="collapse" aria-labelledby="conveniosPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="crear_convenio.html">Crear Convenio</a>
+                        <a class="collapse-item" href="mostrar_convenio.html">Mostrar Convenio</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider" />
+
             <div id="tesorero_div">
                 <!-- Heading -->
                 <div class="sidebar-heading">Tesorero</div>
@@ -167,12 +187,6 @@ function setMov($folio_datos)
 
                 <hr class="sidebar-divider" />
 
-                <!-- Nav Item - PRORROGA -->
-                <li class="nav-item" style="margin-top: -15px">
-                    <a class="nav-link" href="crear_convenio.html">
-                        <i class="fas fa-fw fa-file-invoice-dollar"></i>
-                        <span>Crear Convenio</span></a>
-                </li>
             </div>
         </ul>
         <!-- FIN BARRA MENU -->
@@ -276,7 +290,13 @@ function setMov($folio_datos)
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     PERIODO</div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span id="periodo"><?php echo $folio_datos['idPeriodo'] ?>
+                                                    <span id="periodo"><?php
+                                                                        if ($folio_datos['idPeriodo'] == 10) {
+                                                                            echo 'Periodos adeudados';
+                                                                        } else {
+                                                                            echo $folio_datos['idPeriodo'];
+                                                                        }
+                                                                        ?>
                                                     </span>
                                                 </div>
                                             </div>
@@ -466,7 +486,7 @@ function setMov($folio_datos)
         <button id="customAlertButton" class="custom-alert-button">Aceptar</button>
     </div>
 
-    <script type="module" src="js/pdf.js?v=1.8"></script>
+    <script type="module" src="js/pdf.js?v=1.10"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>

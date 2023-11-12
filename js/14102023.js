@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
               egresos.beneficiario,
               formatearMoneda(egresos.monto),
               egresos.resumenMensual,
-              egresos.idEmpleado,
+              '(' + egresos.idEmpleado + ') - ' + egresos.nomEmpleado,
               egresos.fecha,
               egresos.folio,
               egresos.n_documento

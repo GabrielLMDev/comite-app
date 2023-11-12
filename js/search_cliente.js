@@ -1,9 +1,9 @@
 function buscarClientes() {
-  var inputNombre = document.getElementById("busqueda").value;
-  var selectResultado = document.getElementById("resultado");
+  let inputNombre = document.getElementById("busqueda").value;
+  let selectResultado = document.getElementById("resultado");
 
   // Realiza una solicitud AJAX para obtener resultados de la base de datos
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open("GET", "./php/search_cliente.php?nombre=" + inputNombre, true);
 
   xhr.onreadystatechange = function () {
@@ -14,13 +14,13 @@ function buscarClientes() {
       }
 
       // Parsea la respuesta JSON y crea las opciones del select
-      var data = JSON.parse(xhr.responseText);
-      var option = document.createElement("option");
+      let data = JSON.parse(xhr.responseText);
+      let option = document.createElement("option");
       option.value = null;
       option.text = "Selecciona";
       selectResultado.appendChild(option);
       data.forEach(function (cliente) {
-        var option = document.createElement("option");
+        let option = document.createElement("option");
         option.value = cliente.id;
         option.text = cliente.nombre;
         selectResultado.appendChild(option);
@@ -39,17 +39,17 @@ function buscarClientes() {
 }
 
 function seleccionarCliente() {
-  var selectResultado = document.getElementById("resultado");
-  var inputNombre = document.getElementById("busqueda");
-  var selectedOption = selectResultado.options[selectResultado.selectedIndex];
+  let selectResultado = document.getElementById("resultado");
+  let inputNombre = document.getElementById("busqueda");
+  let selectedOption = selectResultado.options[selectResultado.selectedIndex];
 
   // Asigna el valor del ID al campo inputNombre
   inputNombre.value = selectedOption.value;
 }
 
 function borrarSeleccion() {
-  var selectResultado = document.getElementById("resultado");
-  var inputNombre = document.getElementById("busqueda");
+  let selectResultado = document.getElementById("resultado");
+  let inputNombre = document.getElementById("busqueda");
 
   // Borra la selección del select y el valor del campo inputNombre
   selectResultado.selectedIndex = -1;

@@ -1,5 +1,5 @@
 <?php
-// Conexión a la base de datos
+//Version 2 - STABLE//
 $servername = "localhost";
 $username = 'u486552643_root';
 $password = 'Comite.App2023';
@@ -15,11 +15,12 @@ if ($conn->connect_error) {
 $mesSeleccionado = $_GET['mes']; // Asegúrate de que este nombre coincida con el valor enviado desde JavaScript
 
 // Consulta SQL para seleccionar registros de la tabla "nominas" según el mes seleccionado
-$sql = "SELECT *
-        FROM nominas
-        WHERE resumenMensual LIKE '%$mesSeleccionado%'
-        ORDER BY resumenMensual ASC, 
-        nAsalariado ASC";
+$sql = "SELECT n.*, de.nombre AS nombre_empleado, es.nombre AS nombre_salario
+FROM nominas n
+INNER JOIN datos_empleado de ON n.idEmpleado = de.idEmpleado
+INNER JOIN empleados_salarios es ON n.nAsalariado = es.nEmpleado
+WHERE n.resumenMensual LIKE '%$mesSeleccionado%'
+ORDER BY n.resumenMensual ASC, n.nAsalariado ASC";
 
 $result = $conn->query($sql);
 

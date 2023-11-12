@@ -74,6 +74,21 @@ if (isset($_GET['cliente_contrato'])) {
             </li>
             <hr class="sidebar-divider" />
 
+            <li class="nav-item" style="margin-top: -14px;">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#conveniosPages" aria-expanded="true" aria-controls="#conveniosPages">
+                    <i class="fas fa-fw fa-file-invoice-dollar"></i>
+                    <span>Convenios</span>
+                </a>
+                <div id="conveniosPages" class="collapse" aria-labelledby="conveniosPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="crear_convenio.html">Crear Convenio</a>
+                        <a class="collapse-item" href="mostrar_convenio.html">Mostrar Convenio</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider" />
+
             <div id="tesorero_div">
                 <!-- Heading -->
                 <div class="sidebar-heading">Tesorero</div>
@@ -120,12 +135,6 @@ if (isset($_GET['cliente_contrato'])) {
 
                 <hr class="sidebar-divider" />
 
-                <!-- Nav Item - PRORROGA -->
-                <li class="nav-item" style="margin-top: -15px">
-                    <a class="nav-link" href="crear_convenio.html">
-                        <i class="fas fa-fw fa-file-invoice-dollar"></i>
-                        <span>Crear Convenio</span></a>
-                </li>
             </div>
         </ul>
         <!-- FIN BARRA MENU -->
@@ -157,7 +166,7 @@ if (isset($_GET['cliente_contrato'])) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
-                                <img class="img-profile rounded-circle" src="" id="avatarImg"/>
+                                <img class="img-profile rounded-circle" src="" id="avatarImg" />
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -189,6 +198,7 @@ if (isset($_GET['cliente_contrato'])) {
                                             <th>Monto</th>
                                             <th>Fecha</th>
                                             <th>Folio</th>
+                                            <th>Folio Convenio</th>
                                             <th>Observaciones</th>
                                         </tr>
                                     </thead>
@@ -199,6 +209,7 @@ if (isset($_GET['cliente_contrato'])) {
                                             <th>Monto</th>
                                             <th>Fecha</th>
                                             <th>Folio</th>
+                                            <th>Folio Convenio</th>
                                             <th>Observaciones</th>
                                         </tr>
                                     </tfoot>
@@ -235,10 +246,15 @@ if (isset($_GET['cliente_contrato'])) {
                                             } catch (PDOException $e) {
                                                 die('Connection Failed: ' . $e->getMessage());
                                             }
+                                            $cookie_name = "userId";
+                                            $cookie_value = json_decode($_COOKIE[$cookie_name], true);
+                                            $idEmpleado = $cookie_value['id'];
+                                            $nombre = $cookie_value['nombre'];
                                             $concept = "CONSULTÓ EL ESTADO DE CUENTA DE " . $dato;
-                                            $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto) VALUES (:user, :concepto)";
+                                            $sql = "INSERT INTO empleado_movimientos (idEmpleado, nombre, concepto) VALUES (:user, :nombre, :concepto)";
                                             $stmt = $conn->prepare($sql);
-                                            $stmt->bindParam(':user',  $_COOKIE['userId']);
+                                            $stmt->bindParam(':user',  $idEmpleado);
+                                            $stmt->bindParam(':nombre',  $nombre);
                                             $stmt->bindParam(':concepto', $concept);
                                             if ($stmt->execute()) {
                                             } else {
@@ -253,16 +269,24 @@ if (isset($_GET['cliente_contrato'])) {
                                         <?php
                                         }
                                         ?>
-                                        <?php foreach ($datos as $fila) { ?>
+                                        <?php
+                                        foreach ($datos as $fila) { ?>
                                             <tr>
                                                 <td><?php echo $fila['idCliente']; ?></td>
-                                                <td><?php echo $fila['idPeriodo']; ?></td>
+                                                <?php
+                                                if ($fila['idPeriodo'] == 10) { ?>
+                                                    <td><?php echo 'Pago periodos adeudados' ?></td>
+                                                <?php } else { ?>
+                                                    <td><?php echo $fila['idPeriodo']; ?></td>
+                                                <?php } ?>
                                                 <td><?php echo $fila['monto']; ?></td>
                                                 <td><?php echo $fila['fecha_pago']; ?></td>
                                                 <td><?php echo $fila['folio']; ?></td>
+                                                <td><?php echo $fila['folio_convenio']; ?></td>
                                                 <td><?php echo $fila['observaciones']; ?></td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

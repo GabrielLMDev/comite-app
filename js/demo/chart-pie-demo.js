@@ -3,7 +3,7 @@ Chart.defaults.global.defaultFontFamily = 'Karla', 'sans-serif', 'Apple Color Em
 Chart.defaults.global.defaultFontColor = '#858796';
 var periodosTotales, periodosPagados, periodosTotales1;
 var numero;
-var dataset
+var dataset;
 window.addEventListener('DOMContentLoaded', () => {
   var cliente = getCookie("cliente");
   let clienteData = new FormData();

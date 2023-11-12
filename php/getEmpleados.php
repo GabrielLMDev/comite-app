@@ -1,4 +1,5 @@
 <?php
+//Version 2 - STABLE//
 require 'database.php';
 $usuario = $_GET['user'];
 $empleado;

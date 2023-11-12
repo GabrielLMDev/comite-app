@@ -1,5 +1,5 @@
 <?php
-    // Conectar a la base de datos (cambia estos valores según tu configuración)
+    //Version 2 - STABLE//
     $conexion = new mysqli("localhost", "u486552643_root", "Comite.App2023", "u486552643_ComiteApp");
     
     // Verificar la conexión

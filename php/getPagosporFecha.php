@@ -1,5 +1,5 @@
 <?php
-// Conexión a la base de datos
+//Version 2 - STABLE//
 $servername = "localhost";
 $username = 'u486552643_root';
 $password = 'Comite.App2023';
@@ -13,10 +13,12 @@ if ($conn->connect_error) {
 
 $mesSeleccionado = $_GET['mes'];
 
-$sql = "SELECT idEmpleado, SUM(monto) as total_pago
-        FROM pagos
-        WHERE resumenMensual LIKE '%$mesSeleccionado%'
-        GROUP BY idEmpleado";
+$sql = "SELECT e.idEmpleado, de.nombre, SUM(p.monto) as total_pago
+FROM datos_empleado de
+INNER JOIN empleados e ON de.idEmpleado = e.idEmpleado
+INNER JOIN pagos p ON e.idEmpleado = p.idEmpleado
+WHERE p.resumenMensual LIKE '%$mesSeleccionado%'
+GROUP BY e.idEmpleado";
 
 $result = $conn->query($sql);
 

@@ -1,4 +1,5 @@
 <?php
+//Version 2 - STABLE//
 // Iniciar o reanudar una sesión
 session_start();
 // Comprobar si una variable de sesión específica existe

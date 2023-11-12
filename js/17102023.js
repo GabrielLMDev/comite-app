@@ -51,6 +51,7 @@ egresos_payment_form.addEventListener("submit", function (e) {
             }
         })
         .catch(error => {
+            var mensaje, titulo;
             console.error('Error:', error);
             titulo = "ERROR";
             mensaje = error;

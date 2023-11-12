@@ -60,8 +60,12 @@ taskForm.addEventListener("submit", function (e) {
       console.log(data);
       var mensaje, titulo;
       if (data.estatus === "Ok") {
-        localStorage.setItem("parameters", JSON.stringify(data));
-        setCookie("userId", data.usuario, 1);
+        setCookie("parameters", JSON.stringify(data), 1);
+        const cookieEmpleado = {
+          id: data.usuario,
+          nombre: data.nombre
+        };
+        setCookie("userId", JSON.stringify(cookieEmpleado), 1);
         document.location.href = "./index.html";
       } else if (data === "Error 02") {
         titulo = "ERROR 02";

@@ -1,9 +1,13 @@
 <?php
+//Version 2 - STABLE//
 require 'database.php';
 
 $idContrato = $_GET['contrato'];
 $idCliente = $_GET['cliente'];
-$idEmpleado = $_COOKIE['userId'];
+$cookie_name = "userId";
+$cookie_value = json_decode($_COOKIE[$cookie_name], true);
+$idEmpleado = $cookie_value['id'];
+$nombre = $cookie_value['nombre'];
 $idPeriodo = $_GET['id_periodo'];
 $Obs = $_GET['obs'];
 $Monto = $_GET['montoPago'];
@@ -29,25 +33,29 @@ if ($results > 0) {
     $stmt->bindParam(':monto', $Monto);
     $stmt->bindParam(':folio', $folio);
     if ($stmt->execute()) {
-        setMov($folio, $Monto, $idCliente);
+        setMov($folio, $Monto, $idCliente, $idEmpleado, $nombre, $idPeriodo);
     } else {
         echo json_encode('Error 947');
     }
 }
 
 
-function setMov($folio, $Monto, $idCliente)
+function setMov($folio, $Monto, $idCliente, $idEmpleado, $nombre, $idPeriodo)
 {
     require 'database.php';
     $concept = "PAGO POR $" . $Monto . " DE CLIENTE " . $idCliente;
-    $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto, folio) VALUES (:user, :concepto, :folio)";
+    $sql = "INSERT INTO empleado_movimientos (idEmpleado, nombre, concepto, folio) VALUES (:user, :nombre, :concepto, :folio)";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':user', $_COOKIE['userId']);
+    $stmt->bindParam(':user', $idEmpleado);
+    $stmt->bindParam(':nombre', $nombre);
     $stmt->bindParam(':concepto', $concept);
     $stmt->bindParam(':folio', $folio);
     if ($stmt->execute()) {
-        $pasar_folio['folio'] = $folio;
-        echo json_encode($pasar_folio);
+        if ($idPeriodo == 10) {
+            actualizarPeriodos($idCliente, $folio);
+        } else {
+            actualizarPeriodo($idCliente, $folio, $idPeriodo);
+        }
     } else {
         echo json_encode('Error 948');
     }
@@ -63,7 +71,7 @@ function crear_folio()
     }
 
     // Consultar el último folio
-    $query = "SELECT folio FROM pagos ORDER BY idPago DESC LIMIT 1";
+    $query = "SELECT folio FROM pagos WHERE folio != 'NULL' ORDER BY idPago DESC LIMIT 1";
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {
@@ -80,4 +88,33 @@ function crear_folio()
     // Insertar el pago en la base de datos con el nuevo folio
 
     return $newFolio;
+}
+
+function actualizarPeriodos($idCliente, $folio)
+{
+    require 'database.php';
+    $sql = "UPDATE `clientes_periodo` 
+    SET `Periodo1`='PAGADO',`Periodo2`='PAGADO',`Periodo3`='PAGADO' 
+    WHERE `idCliente` = :idCliente";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':idCliente', $idCliente);
+    if ($stmt->execute()) {
+        $pasar_folio['folio'] = $folio;
+        echo json_encode($pasar_folio);
+    } else {
+        echo json_encode('Error 117');
+    }
+}
+function actualizarPeriodo($idCliente, $folio, $idPeriodo)
+{
+    require 'database.php';
+    $sql = "UPDATE `clientes_periodo` SET `Periodo" . $idPeriodo . "`='PAGADO' WHERE `idCliente` = :idCliente";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':idCliente', $idCliente);
+    if ($stmt->execute()) {
+        $pasar_folio['folio'] = $folio;
+        echo json_encode($pasar_folio);
+    } else {
+        echo json_encode('Error 117');
+    }
 }

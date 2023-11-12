@@ -7,7 +7,7 @@ $(document).ready(function() {
     dataType: 'json',
     success: function(data) {
         // Los datos se almacenan en la variable "data"
-        console.log(data);
+        console.log('DATA FIND');
     },
     error: function(error) {
         console.error('Error al obtener los datos: ' + error);

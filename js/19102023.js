@@ -41,16 +41,14 @@ document.addEventListener("DOMContentLoaded", function () {
           // Agregar los nuevos datos a la tabla
           data.forEach((nomina) => {
             dataTable.row.add([
-              nomina.nAsalariado,
-              nomina.puesto,
-              formatearMoneda(nomina.salarioBase),
-              formatearMoneda(nomina.bonificaciones),
-              formatearMoneda(nomina.deducciones),
-              formatearMoneda(nomina.salarioNeto),
-              nomina.idEmpleado,
+              nomina.nAsalariado + '<br>' + nomina.nombre_salario + '<br>' + nomina.puesto,
+              'Base= ' + formatearMoneda(nomina.salarioBase) +
+              '<br> + <br>Bonificaciones= ' + formatearMoneda(nomina.bonificaciones) +
+              '<br> - <br>Deducciones= ' + formatearMoneda(nomina.deducciones) +
+              '<br>=<br>Salario neto= ' + formatearMoneda(nomina.salarioNeto),
+              '(' + nomina.idEmpleado + ') - ' + nomina.nombre_empleado,
               nomina.resumenMensual,
-              formaPago(nomina.tipo),
-              nomina.referencia,
+              formaPago(nomina.tipo) + '<br>Referencia: ' + nomina.referencia,
               nomina.folio
             ]).draw();
           });

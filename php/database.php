@@ -1,4 +1,5 @@
 <?php
+//Version 2 - STABLE//
 $server = 'localhost';
 $username = 'u486552643_root';
 $password = 'Comite.App2023';

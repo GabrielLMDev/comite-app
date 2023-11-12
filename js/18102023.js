@@ -26,6 +26,7 @@ salarios_payment_form.addEventListener("submit", function (e) {
     const inputBonificacion = document.getElementById("sBonificacion");
     const inputDeduccion = document.getElementById("sDeduccion");
     const selectPago = document.getElementById("pago");
+    const selectNombre = document.getElementById("resultado");
 
     const nEmpleado = inputEmpleado.value;
     const puesto = inputPuesto.value;
@@ -34,6 +35,7 @@ salarios_payment_form.addEventListener("submit", function (e) {
     const sBonificacion = inputBonificacion.value;
     const sDeduccion = inputDeduccion.value;
     const pago = selectPago.options[selectPago.selectedIndex].value;
+    const nombre = selectNombre.options[selectNombre.selectedIndex].text;
 
     const url = './php/setNomina.php';
     const data = {
@@ -43,7 +45,8 @@ salarios_payment_form.addEventListener("submit", function (e) {
         pago: pago,
         sBase: sBase,
         sBonificacion: sBonificacion,
-        sDeduccion: sDeduccion
+        sDeduccion: sDeduccion,
+        nombreEmpleado: nombre
     };
     const params = new URLSearchParams(data);
     const fullURL = `${url}?${params}`;

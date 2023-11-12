@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Agregar los nuevos datos a la tabla
           data.forEach((ingresos) => {
             dataTable.row.add([
-              ingresos.idEmpleado,
+              ingresos.idEmpleado + ' - ' + ingresos.nombre,
               formatearMoneda(ingresos.total_pago),
             ]).draw();
           });

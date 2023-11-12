@@ -1,11 +1,11 @@
 let data = [];
 
 function buscarEmpleado() {
-  var inputNombre = document.getElementById("nEmpleado").value;
-  var selectResultado = document.getElementById("resultado");
+  let inputNombre = document.getElementById("nEmpleado").value;
+  let selectResultado = document.getElementById("resultado");
 
   // Realiza una solicitud AJAX para obtener resultados de la base de datos
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open("GET", "./php/search_Empleado.php?nombre=" + inputNombre, true);
 
   xhr.onreadystatechange = function () {
@@ -17,12 +17,12 @@ function buscarEmpleado() {
 
       // Parsea la respuesta JSON y crea las opciones del select
       data = JSON.parse(xhr.responseText);
-      var option = document.createElement("option");
+      let option = document.createElement("option");
       option.value = '';
       option.text = "Selecciona";
       selectResultado.appendChild(option);
       data.forEach(function (cliente) {
-        var option = document.createElement("option");
+        let option = document.createElement("option");
         option.value = cliente.nEmpleado;
         option.text = cliente.nombre;
         selectResultado.appendChild(option);
@@ -50,7 +50,7 @@ function seleccionarEmpleado() {
   inputNombre.value = selectedOption.value;
 
   // Obtén y asigna el valor del "puesto" al campo inputPuesto (suponiendo que los datos del puesto se almacenan en el objeto cliente)
-  var clienteData = data.find(function (cliente) {
+  let clienteData = data.find(function (cliente) {
     return cliente.nEmpleado == selectedOption.value;
   });
   if (clienteData) {
@@ -62,8 +62,8 @@ function seleccionarEmpleado() {
 }
 
 function borrarSeleccion() {
-  var selectResultado = document.getElementById("resultado");
-  var inputNombre = document.getElementById("nEmpleado");
+  let selectResultado = document.getElementById("resultado");
+  let inputNombre = document.getElementById("nEmpleado");
 
   // Borra la selección del select y el valor del campo inputNombre
   selectResultado.selectedIndex = -1;

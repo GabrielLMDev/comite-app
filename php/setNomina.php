@@ -1,10 +1,15 @@
 <?php
+//Version 2 - STABLE//
 require 'database.php';
 $nEmpleado = $_GET['nEmpleado'];
+$nombreEmpleado = $_GET['nombreEmpleado'];
 $puesto = $_GET['puesto'];
 $pago = $_GET['pago'];
 $n_pago = $_GET['n_pago'];
-$idEmpleado = $_COOKIE['userId'];
+$cookie_name = "userId";
+$cookie_value = json_decode($_COOKIE[$cookie_name], true);
+$idEmpleado = $cookie_value['id'];
+$nombre = $cookie_value['nombre'];
 $sBase = $_GET['sBase'];
 $sBonificacion = $_GET['sBonificacion'];
 $sDeduccion = $_GET['sDeduccion'];
@@ -26,19 +31,21 @@ $stmt->bindParam(':folio', $folio);
 
 
 if ($stmt->execute()) {
-    setMov($folio, $nEmpleado);
+    setMov($folio, $nEmpleado, $idEmpleado, $nombre, $nombreEmpleado);
 } else {
     echo json_encode('Error 947');
 }
 
 
-function setMov($folio, $nEmpleado)
+function setMov($folio, $nEmpleado, $idEmpleado, $nombre, $nombreEmpleado)
 {
     require 'database.php';
-    $concept = "NOMINA REGISTRADA A EMPLEADO: " . $nEmpleado . " CON NUMERO DE FOLIO: " . $folio;
-    $sql = "INSERT INTO empleado_movimientos (idEmpleado, concepto, folio_nomina) VALUES (:user, :concepto, :folio)";
+    $concept = "NOMINA REGISTRADA A EMPLEADO: " . "(". $nEmpleado . ") - " . $nombreEmpleado . " CON NUMERO DE FOLIO: " . $folio;
+    $sql = "INSERT INTO empleado_movimientos (idEmpleado, nombre, concepto, folio_nomina) 
+    VALUES (:user, :nombre, :concepto, :folio)";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':user', $_COOKIE['userId']);
+    $stmt->bindParam(':user', $idEmpleado);
+    $stmt->bindParam(':nombre', $nombre);
     $stmt->bindParam(':concepto', $concept);
     $stmt->bindParam(':folio', $folio);
     if ($stmt->execute()) {

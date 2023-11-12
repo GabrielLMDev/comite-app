@@ -2,8 +2,9 @@ window.addEventListener('DOMContentLoaded', () => {
   titulo = 'EXITO';
   mensaje = 'No olvides cerrar sesion.';
   showCustomAlert(titulo, mensaje);
-  const jsonParameters = localStorage.getItem("parameters");
-  const Parameter = JSON.parse(jsonParameters);
+
+  const cookieParametros = getCookie('parameters');
+  const Parameter = JSON.parse(cookieParametros);
   let user = Parameter.usuario;
 
   const url = './php/getEmpleados.php';
@@ -34,18 +35,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (valorId !== null) {
     const imagen = document.getElementById('perfilImagen');
-    imagen.src = `./php/avatar_Index.php?id=${valorId}`;
+    const userData = JSON.parse(valorId);
+    imagen.src = `./php/avatar_Index.php?id=${userData.id}`;
   } else {
     console.log(`La cookie ${nombreCookie} no existe o no se ha establecido.`);
   }
 });
-function getCookie(nombreCookie) {
-  const cookies = document.cookie.split('; ');
-  for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i].split('=');
-    if (cookie[0] === nombreCookie) {
-      return cookie[1];
-    }
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts.pop().split(';').shift();
   }
   return null;
 }
@@ -68,4 +68,12 @@ function showCustomAlert(titulo, mensaje) {
 function hideCustomAlert() {
   var customAlert = document.getElementById('customAlert');
   customAlert.style.display = 'none';
+}
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts.pop().split(';').shift();
+  }
+  return null;
 }

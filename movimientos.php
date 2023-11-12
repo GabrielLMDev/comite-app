@@ -20,107 +20,112 @@
     <!-- VENTANA -->
     <div id="wrapper">
 
-    <!-- BARRA MENU -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <!-- LOGO - MENU -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-faucet"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">COMITE DE AYOTLA</div>
-      </a>
+        <!-- BARRA MENU -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- LOGO - MENU -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-faucet"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">COMITE DE AYOTLA</div>
+            </a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0" />
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0" />
 
-      <!-- Nav Item - REGISTRAR -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-home"></i>
-          <span>Inicio</span></a>
-      </li>
+            <!-- Nav Item - REGISTRAR -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Inicio</span></a>
+            </li>
 
-      <hr class="sidebar-divider" />
+            <hr class="sidebar-divider" />
 
-      <!-- Heading -->
-      <div class="sidebar-heading">Secretario</div>
+            <!-- Heading -->
+            <div class="sidebar-heading">Secretario</div>
 
-      <!-- Menu pagos -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-          aria-controls="collapseTwo">
-          <i class="fas fa-search-dollar"></i>
-          <span>Pagos y Consultas</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="nuevo_pago.html">Registrar Pago</a>
-            <a class="collapse-item" href="buscar_pago.html">Buscar Pago</a>
-            <a class="collapse-item" href="imprimir_historial.html">
-              <span>Imprimir Historial</span></a>
-          </div>
-        </div>
-      </li>
-      <hr class="sidebar-divider" />
+            <!-- Menu pagos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-search-dollar"></i>
+                    <span>Pagos y Consultas</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="nuevo_pago.html">Registrar Pago</a>
+                        <a class="collapse-item" href="buscar_pago.html">Buscar Pago</a>
+                        <a class="collapse-item" href="imprimir_historial.html">
+                            <span>Imprimir Historial</span></a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider" />
 
-      <div id="tesorero_div">
-        <!-- Heading -->
-        <div class="sidebar-heading">Tesorero</div>
-        <!-- Menu Egresos -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-hand-holding-usd"></i>
-            <span>Egresos</span>
-          </a>
-          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="registrar_egreso.html">Registrar Egreso</a>
-              <a class="collapse-item" href="registrar_nomina.html">Pago Nómina</a>
-              <a class="collapse-item" href="aportaciones.html">Aportaciones</a>
+            <li class="nav-item" style="margin-top: -14px;">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#conveniosPages" aria-expanded="true" aria-controls="#conveniosPages">
+                    <i class="fas fa-fw fa-file-invoice-dollar"></i>
+                    <span>Convenios</span>
+                </a>
+                <div id="conveniosPages" class="collapse" aria-labelledby="conveniosPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="crear_convenio.html">Crear Convenio</a>
+                        <a class="collapse-item" href="mostrar_convenio.html">Mostrar Convenio</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider" />
+
+            <div id="tesorero_div">
+                <!-- Heading -->
+                <div class="sidebar-heading">Tesorero</div>
+                <!-- Menu Egresos -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <span>Egresos</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="registrar_egreso.html">Registrar Egreso</a>
+                            <a class="collapse-item" href="registrar_nomina.html">Pago Nómina</a>
+                            <a class="collapse-item" href="aportaciones.html">Aportaciones</a>
+                        </div>
+                    </div>
+                </li>
+                <hr class="sidebar-divider" />
             </div>
-          </div>
-        </li>
-        <hr class="sidebar-divider" />
-      </div>
 
-      <div id="admin_div">
-        <div class="sidebar-heading">Administrador</div>
-        <li class="nav-item active">
-          <a class="nav-link" href="movimientos.php" id="new_convenio">
-            <i class="fas fa-fw fa-exchange-alt"></i>
-            <span>Ver Movimientos</span></a>
-        </li>
+            <div id="admin_div">
+                <div class="sidebar-heading">Administrador</div>
+                <li class="nav-item">
+                    <a class="nav-link" href="movimientos.php" id="new_convenio">
+                        <i class="fas fa-fw fa-exchange-alt"></i>
+                        <span>Ver Movimientos</span></a>
+                </li>
 
-        <hr class="sidebar-divider" />
+                <hr class="sidebar-divider" />
 
-        <li class="nav-item" style="margin-top: -14px;">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="#collapsePages">
-            <i class="fas fa-hand-holding-usd"></i>
-            <span>Ver Entradas y Salidas</span>
-          </a>
-          <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="ingresos.html" id="new_convenio">Ver Ingresos</a>
-              <a class="collapse-item" href="egresos.html" id="new_convenio">Ver Egresos</a>
-              <a class="collapse-item" href="nominas_pagadas.html">Ver Nominas Pagadas</a>
+                <li class="nav-item" style="margin-top: -14px;">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="#collapsePages">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <span>Ver Entradas y Salidas</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="ingresos.html" id="new_convenio">Ver Ingresos</a>
+                            <a class="collapse-item" href="egresos.html" id="new_convenio">Ver Egresos</a>
+                            <a class="collapse-item" href="nominas_pagadas.html">Ver Nominas Pagadas</a>
+                        </div>
+                    </div>
+                </li>
+
+                <hr class="sidebar-divider" />
+
             </div>
-          </div>
-        </li>
-
-        <hr class="sidebar-divider" />
-
-        <!-- Nav Item - PRORROGA -->
-        <li class="nav-item" style="margin-top: -15px">
-          <a class="nav-link" href="crear_convenio.html">
-            <i class="fas fa-fw fa-file-invoice-dollar"></i>
-            <span>Crear Convenio</span></a>
-        </li>
-      </div>
-    </ul>
-    <!-- FIN BARRA MENU -->
+        </ul>
+        <!-- FIN BARRA MENU -->
 
         <!-- CONTENIDO -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -149,7 +154,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empleado">Usuario</span>
-                                <img class="img-profile rounded-circle" src="" id="avatarImg"/>
+                                <img class="img-profile rounded-circle" src="" id="avatarImg" />
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -197,7 +202,7 @@
                                         }
 
                                         // Consulta SQL para obtener los datos de la tabla
-                                        $query = "SELECT idEmpleado, concepto, fecha FROM empleado_movimientos";
+                                        $query = "SELECT idEmpleado, nombre, concepto, fecha FROM empleado_movimientos";
                                         $resultado = $conexion->query($query);
 
                                         // Verificar si la consulta fue exitosa
@@ -218,7 +223,7 @@
                                         ?>
                                         <?php foreach ($datos as $fila) { ?>
                                             <tr>
-                                                <td><?php echo $fila['idEmpleado']; ?></td>
+                                                <td><?php echo $fila['idEmpleado'] . '<br>' . $fila['nombre']; ?></td>
                                                 <td><?php echo $fila['concepto']; ?></td>
                                                 <td><?php echo $fila['fecha']; ?></td>
                                             </tr>

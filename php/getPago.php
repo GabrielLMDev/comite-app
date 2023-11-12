@@ -1,4 +1,5 @@
 <?php
+//Version 2 - STABLE//
 require 'database.php';
 $folio = $_GET['folio'];
 $folio_datos;
@@ -16,6 +17,6 @@ if ($results > 0) {
     $folio_datos['monto'] = $results['monto'];
     $folio_datos['folio'] = $results['folio'];
     echo json_encode($folio_datos);
-}else{
+} else {
     echo json_encode('No_Existe');
 }

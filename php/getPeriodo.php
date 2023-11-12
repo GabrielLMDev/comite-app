@@ -1,5 +1,5 @@
 <?php
-// Configuración de la conexión a la base de datos
+//Version 2 - STABLE//
 $servername = "localhost";
 $username = 'u486552643_root';
 $password = 'Comite.App2023';

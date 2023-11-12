@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         const data = await response.json();
 
         if (data != null) {
+          if (data.idPeriodo == 10) {
+            data.idPeriodo = 'Periodos Adeudados';
+          }
           const datos = {
             fecha: data.fecha_pago,
             folio: parametro,
@@ -51,7 +54,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                   nombre: dataCliente.nombre,
                   direccion: dataCliente.direccion
                 };
-
                 const doc = new jsPDF({
                   orientation: 'portrait',
                   format: 'letter'
